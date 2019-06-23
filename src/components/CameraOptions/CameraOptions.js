@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import * as bookService from '../../services/book';
+
 import styles from './styles';
 
 const propTypes = {
@@ -10,19 +12,18 @@ const propTypes = {
 };
 
 const CameraOptions = ({ cameraRef }) => {
-  async function takePicture() {
+  const handleTakePicture = async () => {
     if (cameraRef) {
       const picture = await cameraRef.current.takePictureAsync({
-        quality: 0.7,
+        base64: true,
       });
-      console.log(picture);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
       <Icon name="book" size={27} color="#fff" />
-      <TouchableOpacity onPress={takePicture}>
+      <TouchableOpacity onPress={handleTakePicture}>
         <Icon name="circle-thin" size={75} color="#fff" />
       </TouchableOpacity>
       <Icon name="cog" size={27} color="#fff" />

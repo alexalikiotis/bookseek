@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   inputContainer: {
     borderBottomWidth: 0,
-    // marginLeft: -15,
-    // marginRight: -15,
+    marginLeft: -15,
+    marginRight: -15,
   },
   input: {
     color: '#fff',
