@@ -1,30 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import Permissions from 'react-native-permissions';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import CameraScreen from './screens/CameraScreen';
+import CameraScreen from './screens/Camera';
 
-const App = () => {
-  const [hasCameraPermission, setHasCameraPermission] = useState(false);
-
-  const requestCameraPermission = async () => {
-    const status = await Permissions.request('camera');
-    setHasCameraPermission(status === 'authorized' ? true : false);
-  };
-
-  useEffect(() => {
-    requestCameraPermission();
-  });
-
-  return (
-    <View style={{ flex: 1 }}>
-      {hasCameraPermission ? (
-        <CameraScreen />
-      ) : (
-        <Text>No access to camera</Text>
-      )}
-    </View>
-  );
+const stackNavigatorConfig = {
+  headerMode: 'none',
 };
 
-export default App;
+const AppStack = createStackNavigator(
+  {
+    Camera: CameraScreen,
+  },
+  stackNavigatorConfig
+);
+
+export default createAppContainer(AppStack);

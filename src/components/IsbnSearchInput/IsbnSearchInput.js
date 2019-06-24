@@ -4,7 +4,7 @@ import { Input } from 'react-native-elements';
 
 import styles from './styles';
 
-const SearchField = () => {
+const IsbnSearchInput = () => {
   return (
     <Input
       placeholder="Search ISBN..."
@@ -12,10 +12,11 @@ const SearchField = () => {
       leftIcon={
         <Icon name="search" size={22} color="#fff" style={styles.searchIcon} />
       }
+      containerStyle={styles.container}
       inputContainerStyle={styles.inputContainer}
       inputStyle={styles.input}
     />
   );
 };
 
-export default SearchField;
+export default IsbnSearchInput;
