@@ -1,8 +1,13 @@
-import { searchRequest, searchSuccess, searchFailed } from './actions';
+import {
+  searchRequest,
+  searchSuccess,
+  searchFailed,
+  searchCancellation,
+} from './actions';
 
 const INITIAL_STATE = {
   fetching: false,
-  info: {},
+  data: {},
   error: null,
 };
 
@@ -27,6 +32,9 @@ const reducer = (state = INITIAL_STATE, action) => {
         fetching: false,
         error: action.payload,
       };
+
+    case searchCancellation.type:
+      return INITIAL_STATE;
 
     default:
       return state;

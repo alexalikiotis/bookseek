@@ -7,7 +7,7 @@ import IsbnSearchInput from '../components/IsbnSearchInput';
 import CameraIcon from '../components/CameraIcon';
 import CameraSnap from '../containers/CameraSnap';
 
-const Camera = () => {
+const Camera = props => {
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
   const cameraRef = useRef(null);
 
@@ -43,7 +43,7 @@ const Camera = () => {
             <IsbnSearchInput />
             <View style={styles.bottomIcons}>
               <CameraIcon name="book" />
-              <CameraSnap cameraRef={cameraRef} />
+              <CameraSnap cameraRef={cameraRef} navigation={props.navigation} />
               <CameraIcon name="cog" />
             </View>
           </View>

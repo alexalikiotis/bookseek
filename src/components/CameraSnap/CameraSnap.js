@@ -5,18 +5,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const propTypes = {
   cameraRef: PropTypes.object,
+  navigation: PropTypes.object,
   searchRequest: PropTypes.func,
 };
 
-const CameraSnap = ({ cameraRef, searchRequest }) => {
+const CameraSnap = ({ cameraRef, navigation, searchRequest }) => {
   const handleTakePicture = async () => {
-    if (cameraRef) {
-      const picture = await cameraRef.current.takePictureAsync({
-        base64: true,
-      });
+    // if (cameraRef) {
+    //   const picture = await cameraRef.current.takePictureAsync({
+    //     base64: true,
+    //   });
 
-      searchRequest(picture);
-    }
+    //   searchRequest(picture);
+    //   navigation.navigate('Book');
+    // }
+    searchRequest();
+    navigation.navigate('Book');
   };
 
   return (

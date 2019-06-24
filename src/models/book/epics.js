@@ -1,9 +1,14 @@
 import { ofType } from 'redux-observable';
 import { from } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap, takeUntil } from 'rxjs/operators';
 
 import * as bookService from '../../services/book';
-import { searchRequest, searchSuccess, searchFailed } from './actions';
+import {
+  searchRequest,
+  searchSuccess,
+  searchFailed,
+  searchCancellation,
+} from './actions';
 
 export const searchRequestEpic = action$ =>
   action$.pipe(
@@ -12,7 +17,8 @@ export const searchRequestEpic = action$ =>
     switchMap(picture =>
       from(bookService.recognizePicture(picture)).pipe(
         tap(res => console.log(res)),
-        map(() => searchSuccess())
+        map(() => searchSuccess()),
+        takeUntil(action$.pipe(ofType(searchCancellation.type)))
       )
     )
   );
