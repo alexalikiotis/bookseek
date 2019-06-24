@@ -1,5 +1,8 @@
+import React from 'react';
+import { Provider } from 'react-redux';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import store from './store/configureStore';
 import CameraScreen from './screens/Camera';
 
 const stackNavigatorConfig = {
@@ -13,4 +16,12 @@ const AppStack = createStackNavigator(
   stackNavigatorConfig
 );
 
-export default createAppContainer(AppStack);
+const Navigation = createAppContainer(AppStack);
+
+const App = () => (
+  <Provider store={store}>
+    <Navigation />
+  </Provider>
+);
+
+export default App;
