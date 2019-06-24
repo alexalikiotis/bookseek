@@ -5,7 +5,7 @@ import Permissions from 'react-native-permissions';
 
 import IsbnSearchInput from '../components/IsbnSearchInput';
 import CameraIcon from '../components/CameraIcon';
-import CameraSnap from '../components/CameraSnap';
+import CameraSnap from '../containers/CameraSnap';
 
 const Camera = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(false);

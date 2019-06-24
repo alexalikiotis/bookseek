@@ -5,16 +5,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const propTypes = {
   cameraRef: PropTypes.object,
+  searchRequest: PropTypes.func,
 };
 
-const CameraSnap = ({ cameraRef }) => {
+const CameraSnap = ({ cameraRef, searchRequest }) => {
   const handleTakePicture = async () => {
     if (cameraRef) {
       const picture = await cameraRef.current.takePictureAsync({
         base64: true,
       });
 
-      console.log(picture);
+      searchRequest(picture);
     }
   };
 
