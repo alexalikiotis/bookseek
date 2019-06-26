@@ -22,7 +22,7 @@ const CameraFooter = ({ changeIndex }) => {
       />
       <Icon name="md-radio-button-off" color="#fff" size={80} />
       <Icon
-        name="md-settings"
+        name="ios-settings"
         color="#fff"
         size={35}
         onPress={() => changeIndex(2)}
