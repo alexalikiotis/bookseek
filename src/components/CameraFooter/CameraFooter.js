@@ -17,14 +17,14 @@ const CameraFooter = ({ changeIndex }) => {
       <Icon
         name="md-bookmarks"
         color="#fff"
-        size={40}
+        size={35}
         onPress={() => changeIndex(0)}
       />
-      <Icon name="md-aperture" color="#fff" size={70} />
+      <Icon name="md-radio-button-off" color="#fff" size={80} />
       <Icon
         name="md-settings"
         color="#fff"
-        size={40}
+        size={35}
         onPress={() => changeIndex(2)}
       />
     </View>
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-end',
+    paddingBottom: 20,
   },
 });
 
