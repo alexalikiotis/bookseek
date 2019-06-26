@@ -1,0 +1,1 @@
+export const CHANGE_INDEX = 'SWIPER__CHANGE_INDEX';

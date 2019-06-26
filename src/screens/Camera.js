@@ -1,13 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { View, StatusBar, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { View, StatusBar, SafeAreaView, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Permissions from 'react-native-permissions';
 
-import IsbnSearchInput from '../components/IsbnSearchInput';
-import CameraIcon from '../components/CameraIcon';
-import CameraSnap from '../containers/CameraSnap';
+import NoCameraAccessScreen from '../screens/NoCameraAccess';
 
-const Camera = props => {
+import CameraHeader from '../components/CameraHeader';
+import CameraFooter from '../components/CameraFooter/CameraFooter';
+
+const Camera = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
   const cameraRef = useRef(null);
 
@@ -18,14 +19,10 @@ const Camera = props => {
 
   useEffect(() => {
     requestCameraPermission();
-  });
+  }, []);
 
   if (!hasCameraPermission) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>No Access to camera</Text>
-      </View>
-    );
+    return <NoCameraAccessScreen />;
   }
 
   return (
@@ -36,17 +33,10 @@ const Camera = props => {
         type={RNCamera.Constants.Type.back}
         style={{ flex: 1 }}
         captureAudio={false}
-        autoFocus
       >
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.container}>
-            <IsbnSearchInput />
-            <View style={styles.bottomIcons}>
-              <CameraIcon name="book" />
-              <CameraSnap cameraRef={cameraRef} navigation={props.navigation} />
-              <CameraIcon name="cog" />
-            </View>
-          </View>
+        <SafeAreaView style={styles.cameraContainer}>
+          <CameraHeader />
+          <CameraFooter />
         </SafeAreaView>
       </RNCamera>
     </View>
@@ -54,17 +44,10 @@ const Camera = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flex: 1,
-  },
-  bottomIcons: {
+  cameraContainer: {
     flex: 1,
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    paddingBottom: 20,
+    justifyContent: 'space-between',
   },
 });
 

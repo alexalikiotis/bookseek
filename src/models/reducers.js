@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import bookReducer from './book/reducer';
+import swiperReducer from '../models/swiper/reducer';
 
 const rootReducer = combineReducers({
-  book: bookReducer,
+  swiper: swiperReducer,
 });
 
 export default rootReducer;
