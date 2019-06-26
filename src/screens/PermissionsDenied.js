@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const NoCameraAccess = () => {
+const PermissionsDenied = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>No Camera Access</Text>
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NoCameraAccess;
+export default PermissionsDenied;

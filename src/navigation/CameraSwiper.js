@@ -7,16 +7,16 @@ import Swiper from 'react-native-swiper';
 
 import { setOffset } from '../models/swiper/actions';
 
-import CameraScreen from './Camera';
-import SettingsScreen from './Settings';
-import LibraryScreen from './Library';
+import CameraScreen from '../screens/Camera';
+import SettingsScreen from '../screens/Settings';
+import LibraryScreen from '../screens/Library';
 
 const propTypes = {
   offset: PropTypes.number,
   setOffset: PropTypes.func,
 };
 
-const RootSwiper = ({ offset, setOffset }) => {
+const CameraSwiper = ({ offset, setOffset }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const RootSwiper = ({ offset, setOffset }) => {
   );
 };
 
-RootSwiper.propTypes = propTypes;
+CameraSwiper.propTypes = propTypes;
 
 const mapStateToProps = state => {
   const offset = state.swiper.offset;
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RootSwiper);
+)(CameraSwiper);
