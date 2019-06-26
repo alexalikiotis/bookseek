@@ -1,1 +1,1 @@
-export const CHANGE_INDEX = 'SWIPER__CHANGE_INDEX';
+export const SET_OFFSET = 'SWIPER__SET_OFFSET';

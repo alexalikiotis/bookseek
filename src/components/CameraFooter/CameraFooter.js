@@ -5,27 +5,27 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { changeIndex } from '../../models/swiper/actions';
+import { setOffset } from '../../models/swiper/actions';
 
 const propTypes = {
-  changeIndex: PropTypes.func,
+  setOffset: PropTypes.func,
 };
 
-const CameraFooter = ({ changeIndex }) => {
+const CameraFooter = ({ setOffset }) => {
   return (
     <View style={styles.container}>
       <Icon
         name="md-bookmarks"
         color="#fff"
         size={35}
-        onPress={() => changeIndex(0)}
+        onPress={() => setOffset(-1)}
       />
       <Icon name="md-radio-button-off" color="#fff" size={80} />
       <Icon
         name="ios-settings"
         color="#fff"
         size={35}
-        onPress={() => changeIndex(2)}
+        onPress={() => setOffset(1)}
       />
     </View>
   );
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  changeIndex: bindActionCreators(changeIndex, dispatch),
+  setOffset: bindActionCreators(setOffset, dispatch),
 });
 
 export default connect(

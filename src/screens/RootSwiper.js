@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Swiper from 'react-native-swiper';
+
+import { setOffset } from '../models/swiper/actions';
 
 import CameraScreen from './Camera';
 import SettingsScreen from './Settings';
 import LibraryScreen from './Library';
 
 const propTypes = {
-  index: PropTypes.number,
-  changeIndex: PropTypes.func,
+  offset: PropTypes.number,
+  setOffset: PropTypes.func,
 };
 
-const RootSwiper = ({ index }) => {
+const RootSwiper = ({ offset, setOffset }) => {
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (swiperRef && offset !== 0) {
+      swiperRef.current.scrollBy(offset);
+      setOffset(0);
+    }
+  }, [offset]);
+
   return (
-    <Swiper index={index} showsPagination={false} loop={false}>
+    <Swiper
+      ref={swiperRef}
+      index={1}
+      showsPagination={false}
+      loop={false}
+      loadMinimal={true}
+    >
       <View style={{ flex: 1 }}>
         <LibraryScreen />
       </View>
@@ -32,10 +50,17 @@ const RootSwiper = ({ index }) => {
 RootSwiper.propTypes = propTypes;
 
 const mapStateToProps = state => {
-  const index = state.swiper.index;
+  const offset = state.swiper.offset;
   return {
-    index,
+    offset,
   };
 };
 
-export default connect(mapStateToProps)(RootSwiper);
+const mapDispatchToProps = dispatch => ({
+  setOffset: bindActionCreators(setOffset, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RootSwiper);

@@ -1,15 +1,15 @@
-import { changeIndex } from './actions';
+import { setOffset } from './actions';
 
 const initState = {
-  index: 1,
+  offset: 0,
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case changeIndex.type:
+    case setOffset.type:
       return {
         ...state,
-        index: action.payload,
+        offset: action.payload,
       };
 
     default:
