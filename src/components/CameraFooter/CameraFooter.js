@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withNavigation } from 'react-navigation';
+import { compose } from 'ramda';
 
 import { setOffset } from '../../models/swiper/actions';
 
 const propTypes = {
+  navigation: PropTypes.object,
   setOffset: PropTypes.func,
 };
 
-const CameraFooter = ({ setOffset }) => {
+const CameraFooter = ({ navigation, setOffset }) => {
   return (
     <View style={styles.container}>
       <Icon
@@ -20,7 +23,9 @@ const CameraFooter = ({ setOffset }) => {
         size={35}
         onPress={() => setOffset(-1)}
       />
-      <Icon name="md-radio-button-off" color="#fff" size={80} />
+      <TouchableOpacity onPress={() => navigation.navigate('Results')}>
+        <Icon name="md-radio-button-off" color="#fff" size={80} />
+      </TouchableOpacity>
       <Icon
         name="ios-settings"
         color="#fff"
@@ -49,7 +54,10 @@ const mapDispatchToProps = dispatch => ({
   setOffset: bindActionCreators(setOffset, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  withNavigation,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(CameraFooter);

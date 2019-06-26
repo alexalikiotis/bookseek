@@ -27,13 +27,7 @@ const CameraSwiper = ({ offset, setOffset }) => {
   }, [offset]);
 
   return (
-    <Swiper
-      ref={swiperRef}
-      index={1}
-      showsPagination={false}
-      loop={false}
-      loadMinimal={true}
-    >
+    <Swiper ref={swiperRef} index={1} showsPagination={false} loop={false}>
       <View style={{ flex: 1 }}>
         <LibraryScreen />
       </View>
