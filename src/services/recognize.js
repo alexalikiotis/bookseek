@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 import config from '@/config';
-import picture from './picture.json'; 
+import picture from './picture.json';
 
 export const recognizePicture = async () => {
-
   // Perform OCR in given picture
 
-  const googleVisionUri = 'https://vision.googleapis.com/v1/images:annotate?key=';
+  const googleVisionUri =
+    'https://vision.googleapis.com/v1/images:annotate?key=';
   const googleVisionUrl = googleVisionUri + config.googleVisionApiKey;
 
   const requestBody = {
@@ -15,19 +15,20 @@ export const recognizePicture = async () => {
       {
         features: [
           {
-            type: 'TEXT_DETECTION'
-          }
+            type: 'TEXT_DETECTION',
+          },
         ],
         image: {
-          content: picture.base64
-        }
-      }
-    ]
+          content: picture.base64,
+        },
+      },
+    ],
   };
 
   let response;
   let responseData;
 
+  console.log('Requesting data from google vision...');
   response = await axios.post(googleVisionUrl, requestBody);
   responseData = response.data.responses[0].fullTextAnnotation
     ? response.data.responses[0].fullTextAnnotation.text
@@ -42,6 +43,7 @@ export const recognizePicture = async () => {
   const googleBooksUri = 'https://www.googleapis.com/books/v1/volumes?q=';
   const googleBooksUrl = googleBooksUri + responseData.replace('\n', ' ');
 
+  console.log('Requesting data from google books...');
   response = await axios.get(googleBooksUrl);
   responseData = response.data;
 
@@ -65,10 +67,11 @@ export const recognizePicture = async () => {
       industryIdentifiers: item.volumeInfo.industryIdentifiers,
       averageRating: item.volumeInfo.averageRating,
       ratingsCount: item.volumeInfo.ratingsCount,
-      maturityRating: item.volumeInfo.maturityRating
+      maturityRating: item.volumeInfo.maturityRating,
     };
   });
 
-  return items;
+  console.log(items);
 
+  return items;
 };
