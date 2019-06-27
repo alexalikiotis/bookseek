@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import { compose } from 'ramda';
 
-import { setOffset } from '../../models/swiper/actions';
+import { setOffset } from '@/models/swiper/actions';
 
 const propTypes = {
   navigation: PropTypes.object,

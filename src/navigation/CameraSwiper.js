@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Swiper from 'react-native-swiper';
 
-import { setOffset } from '../models/swiper/actions';
+import { setOffset } from '@/models/swiper/actions';
 
-import CameraScreen from '../screens/Camera';
-import SettingsScreen from '../screens/Settings';
-import LibraryScreen from '../screens/Library';
+import CameraScreen from '@/screens/Camera';
+import SettingsScreen from '@/screens/Settings';
+import LibraryScreen from '@/screens/Library';
 
 const propTypes = {
   offset: PropTypes.number,

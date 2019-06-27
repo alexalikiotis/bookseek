@@ -5,10 +5,10 @@ import {
 } from 'react-navigation';
 
 import CameraSwiper from './CameraSwiper';
-import ResultsLoadingScreen from '../screens/ResultsLoading';
+import ResultsLoadingScreen from '@/screens/ResultsLoading';
 
-import PermissionsPendingScreen from '../screens/PermissionsPending';
-import PermissionsDeniedScreen from '../screens/PermissionsDenied';
+import PermissionsPendingScreen from '@/screens/PermissionsPending';
+import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 
 const ResultsNavigator = createStackNavigator(
   {

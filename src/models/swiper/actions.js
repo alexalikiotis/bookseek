@@ -1,4 +1,4 @@
-import createAction from '../../utils/reduxActions';
+import createAction from '@/utils/reduxActions';
 
 import * as types from './types';
 

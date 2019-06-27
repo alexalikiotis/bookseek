@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import swiperReducer from '../models/swiper/reducer';
+import swiperReducer from './swiper/reducer';
 
 const rootReducer = combineReducers({
   swiper: swiperReducer,

@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { View, StatusBar, SafeAreaView, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
-import CameraHeader from '../components/CameraHeader';
-import CameraFooter from '../components/CameraFooter/CameraFooter';
+import CameraHeader from '@/components/CameraHeader';
+import CameraFooter from '@/components/CameraFooter/CameraFooter';
 
 const Camera = () => {
   const cameraRef = useRef(null);
