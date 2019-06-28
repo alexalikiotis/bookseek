@@ -63,11 +63,11 @@ export const recognizePicture = async () => {
       thumbnail: item.volumeInfo.imageLinks.smallThumbnail,
       previewLink: item.volumeInfo.previewLink,
       publishedDate: item.volumeInfo.publishedDate,
-      publisher: item.volumeInfo.publisher,
+      // publisher: item.volumeInfo.publisher,
       industryIdentifiers: item.volumeInfo.industryIdentifiers,
       averageRating: item.volumeInfo.averageRating,
-      ratingsCount: item.volumeInfo.ratingsCount,
-      maturityRating: item.volumeInfo.maturityRating,
+      // ratingsCount: item.volumeInfo.ratingsCount,
+      // maturityRating: item.volumeInfo.maturityRating,
     };
   });
 
