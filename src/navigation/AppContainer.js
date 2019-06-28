@@ -5,14 +5,18 @@ import {
 } from 'react-navigation';
 
 import CameraSwiper from './CameraSwiper';
-import ResultsLoadingScreen from '@/screens/ResultsLoading';
 
+import BooksLoadingScreen from '@/screens/BooksLoading';
+import BooksErrorScreen from '@/screens/BooksError';
+import BooksScreen from '@/screens/Books';
 import PermissionsPendingScreen from '@/screens/PermissionsPending';
 import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 
-const ResultsNavigator = createStackNavigator(
+const BooksNavigator = createStackNavigator(
   {
-    ResultsLoading: ResultsLoadingScreen,
+    BooksLoading: BooksLoadingScreen,
+    BooksError: BooksErrorScreen,
+    Books: BooksScreen,
   },
   { headerMode: 'none' }
 );
@@ -20,7 +24,7 @@ const ResultsNavigator = createStackNavigator(
 const AppStack = createStackNavigator(
   {
     Camera: CameraSwiper,
-    Results: ResultsNavigator,
+    Books: BooksNavigator,
   },
   {
     initialRouteName: 'Camera',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -7,14 +7,24 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { MaterialIndicator } from 'react-native-indicators';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const propTypes = {
   navigation: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
-const ResultsLoading = ({ navigation }) => {
+const BooksLoading = ({ navigation, loading, error }) => {
+  useEffect(() => {
+    console.log(loading, error);
+    if (!loading) {
+      navigation.navigate(error ? 'BooksError' : 'Books');
+    }
+  }, [loading]);
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -34,7 +44,7 @@ const ResultsLoading = ({ navigation }) => {
   );
 };
 
-ResultsLoading.propTypes = propTypes;
+BooksLoading.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,4 +73,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResultsLoading;
+const mapStateToProps = state => {
+  const loading = state.books.loading;
+  const error = state.books.error;
+
+  return {
+    loading,
+    error,
+  };
+};
+
+export default connect(mapStateToProps)(BooksLoading);

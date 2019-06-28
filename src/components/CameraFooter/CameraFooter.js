@@ -8,13 +8,19 @@ import { withNavigation } from 'react-navigation';
 import { compose } from 'ramda';
 
 import { setOffset } from '@/models/swiper/actions';
+import { searchRequest } from '@/models/books/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
   setOffset: PropTypes.func,
 };
 
-const CameraFooter = ({ navigation, setOffset }) => {
+const CameraFooter = ({ navigation, setOffset, searchRequest }) => {
+  const handleCameraButtonPress = () => {
+    searchRequest();
+    navigation.navigate('Books');
+  };
+
   return (
     <View style={styles.container}>
       <Icon
@@ -23,7 +29,7 @@ const CameraFooter = ({ navigation, setOffset }) => {
         size={35}
         onPress={() => setOffset(-1)}
       />
-      <TouchableOpacity onPress={() => navigation.navigate('Results')}>
+      <TouchableOpacity onPress={handleCameraButtonPress}>
         <Icon name="md-radio-button-off" color="#fff" size={80} />
       </TouchableOpacity>
       <Icon
@@ -52,6 +58,7 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   setOffset: bindActionCreators(setOffset, dispatch),
+  searchRequest: bindActionCreators(searchRequest, dispatch),
 });
 
 export default compose(
