@@ -23,7 +23,7 @@ const BooksNavigator = createStackNavigator(
 
 const AppStack = createStackNavigator(
   {
-    Camera: BooksScreen,
+    Camera: CameraSwiper,
     Books: BooksNavigator,
   },
   {

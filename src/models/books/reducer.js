@@ -1,5 +1,3 @@
-import normalizer from '@/utils/reduxNormalizer';
-
 import {
   searchRequest,
   searchSuccess,
@@ -9,8 +7,7 @@ import {
 
 const initState = {
   loading: false,
-  keys: [],
-  entities: {},
+  entities: [],
   error: false,
   errorInfo: null,
 };
@@ -24,12 +21,10 @@ const reducer = (state = initState, action) => {
       };
 
     case searchSuccess.type: {
-      const [keys, entities] = normalizer(action.payload, 'id');
       return {
         ...state,
         loading: false,
-        keys,
-        entities,
+        entities: action.payload,
       };
     }
 

@@ -19,7 +19,6 @@ const propTypes = {
 
 const BooksLoading = ({ navigation, loading, error }) => {
   useEffect(() => {
-    console.log(loading, error);
     if (!loading) {
       navigation.navigate(error ? 'BooksError' : 'Books');
     }

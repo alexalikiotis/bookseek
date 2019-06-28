@@ -10,16 +10,20 @@ import {
   Title,
   Text,
 } from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 const propTypes = {
+  navigation: PropTypes.object,
   title: PropTypes.string,
 };
 
-const BookHeader = ({ title }) => {
+const BookHeader = ({ navigation, title }) => {
+  const handleGoBack = () => navigation.dismiss();
+
   return (
     <Header>
       <Left>
-        <Button transparent>
+        <Button transparent onPress={handleGoBack}>
           <Icon name="arrow-back" />
           <Text>Back</Text>
         </Button>
@@ -34,4 +38,4 @@ const BookHeader = ({ title }) => {
 
 BookHeader.propTypes = propTypes;
 
-export default BookHeader;
+export default withNavigation(BookHeader);
