@@ -19,7 +19,7 @@ const Camera = () => {
       >
         <SafeAreaView style={styles.cameraContainer}>
           <CameraHeader />
-          <CameraFooter />
+          <CameraFooter cameraRef={cameraRef} />
         </SafeAreaView>
       </RNCamera>
     </View>

@@ -18,7 +18,7 @@ export const searchEpic = action$ =>
       from(recognizeService.recognizePicture(picture)).pipe(
         map(items => searchSuccess(items)),
         takeUntil(action$.pipe(ofType(searchCanceled.type))),
-        catchError(error => of(searchFailed(error)))
+        catchError(error => of(searchFailed(error.message)))
       )
     )
   );

@@ -12,11 +12,26 @@ import { searchRequest } from '@/models/books/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
+  cameraRef: PropTypes.object,
   setOffset: PropTypes.func,
+  searchRequest: PropTypes.func,
 };
 
-const CameraFooter = ({ navigation, setOffset, searchRequest }) => {
-  const handleCameraButtonPress = () => {
+const CameraFooter = ({ navigation, cameraRef, setOffset, searchRequest }) => {
+  const handleCameraButtonPress = async () => {
+    // if (cameraRef) {
+    //   const picture = await cameraRef.current.takePictureAsync({
+    //     base64: true,
+    //     quality: 0.7,
+    //     doNotSave: true,
+    //     pauseAfterCapture: true,
+    //     skipProcessing: true, // Android only
+    //   });
+
+    //   searchRequest(picture);
+    //   cameraRef.current.resumePreview();
+    //   navigation.navigate('Books');
+    // }
     searchRequest();
     navigation.navigate('Books');
   };
