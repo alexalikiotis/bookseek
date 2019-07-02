@@ -14,10 +14,9 @@ import { withNavigation } from 'react-navigation';
 
 const propTypes = {
   navigation: PropTypes.object,
-  title: PropTypes.string,
 };
 
-const BookHeader = ({ navigation, title }) => {
+const BookHeader = ({ navigation }) => {
   const handleGoBack = () => navigation.dismiss();
 
   return (
@@ -29,7 +28,7 @@ const BookHeader = ({ navigation, title }) => {
         </Button>
       </Left>
       <Body>
-        <Title>{title}</Title>
+        <Title>Books</Title>
       </Body>
       <Right />
     </Header>

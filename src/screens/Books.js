@@ -22,16 +22,16 @@ const propTypes = {
 };
 
 const Books = ({ entities }) => {
-  const [swiperIndex, setSwiperIndex] = useState(0);
+  // const [swiperIndex, setSwiperIndex] = useState(0);
   const [showMessage, setShowMessage] = useState(true);
 
   return (
     <View style={styles.container}>
-      <BookHeader title={entities[swiperIndex].title} />
+      <BookHeader />
       {showMessage && (
         <View style={styles.messageWrapper}>
           <View>
-            <Text style={styles.messageText}>This is not your book ?</Text>
+            <Text style={styles.messageText}>Is this not your book ?</Text>
             <Text style={styles.messageText}>Swipe right for more results</Text>
           </View>
           <TouchableOpacity onPress={() => setShowMessage(false)}>
@@ -43,7 +43,7 @@ const Books = ({ entities }) => {
         <Swiper
           loop={false}
           showsPagination={false}
-          onIndexChanged={newIndex => setSwiperIndex(newIndex)}
+          // onIndexChanged={newIndex => setSwiperIndex(newIndex)}
         >
           {entities.map(entity => (
             <View key={entity.id} style={{ flex: 1 }}>

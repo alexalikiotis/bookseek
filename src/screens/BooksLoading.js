@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -7,19 +7,24 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MaterialIndicator } from 'react-native-indicators';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import { searchCanceled } from '@/models/books/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
   loading: PropTypes.bool,
   error: PropTypes.bool,
+  searchCanceled: PropTypes.func,
 };
 
-const BooksLoading = ({ navigation, loading, error }) => {
+const BooksLoading = ({ navigation, loading, error, searchCanceled }) => {
+  const [canceled, setCanceled] = useState(false);
   useEffect(() => {
-    if (!loading) {
+    if (!loading && !canceled) {
       navigation.navigate(error ? 'BooksError' : 'Books');
     }
   }, [loading]);
@@ -28,7 +33,13 @@ const BooksLoading = ({ navigation, loading, error }) => {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.pop()}>
+          <TouchableOpacity
+            onPress={() => {
+              setCanceled(true);
+              searchCanceled();
+              navigation.pop();
+            }}
+          >
             <Icon name="md-close" size={35} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -82,4 +93,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(BooksLoading);
+const mapDispatchToProps = dispatch => ({
+  searchCanceled: bindActionCreators(searchCanceled, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BooksLoading);
