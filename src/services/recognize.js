@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { findIndex, propEq } from 'ramda';
 
 import config from '@/config';
 import picture from './picture.json';
@@ -52,6 +53,11 @@ export const recognizePicture = async () => {
   }
 
   const items = responseData.items.map(item => {
+    const isbn13Index = findIndex(
+      propEq('type', 'ISBN_13'),
+      item.volumeInfo.industryIdentifiers
+    );
+
     return {
       id: item.id,
       title: item.volumeInfo.title,
@@ -64,7 +70,8 @@ export const recognizePicture = async () => {
       previewLink: item.volumeInfo.previewLink,
       publishedDate: item.volumeInfo.publishedDate,
       publisher: item.volumeInfo.publisher,
-      industryIdentifiers: item.volumeInfo.industryIdentifiers,
+      industryIdentifier:
+        item.volumeInfo.industryIdentifiers[isbn13Index].identifier,
       // averageRating: item.volumeInfo.averageRating,
       // ratingsCount: item.volumeInfo.ratingsCount,
       // maturityRating: item.volumeInfo.maturityRating,
