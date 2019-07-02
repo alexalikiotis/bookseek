@@ -62,7 +62,15 @@ const Books = ({ entities }) => {
                       />
                       <View style={styles.titleWrapper}>
                         <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.authors}>{item.authors}</Text>
+                        <Text style={styles.authors}>
+                          {item.authors.reduce(
+                            (str, name, index) =>
+                              index !== item.authors.length - 1
+                                ? str.concat(name + ', ')
+                                : str.concat(name),
+                            ''
+                          )}
+                        </Text>
                       </View>
                     </View>
                     <View style={styles.descriptionWrapper}>

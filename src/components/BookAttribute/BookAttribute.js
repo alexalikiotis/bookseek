@@ -11,7 +11,19 @@ const BookAttribute = ({ name, value }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.attributeName}>{name}</Text>
-      <Text>{value}</Text>
+      {typeof value === 'object' ? (
+        <Text>
+          {value.reduce(
+            (str, item, index) =>
+              index !== value.length - 1
+                ? str.concat(item + ', ')
+                : str.concat(item),
+            ''
+          )}
+        </Text>
+      ) : (
+        <Text>{value}</Text>
+      )}
     </View>
   );
 };
