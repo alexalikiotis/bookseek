@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Swiper from 'react-native-swiper';
@@ -27,7 +27,15 @@ const CameraSwiper = ({ offset, setOffset }) => {
   }, [offset]);
 
   return (
-    <Swiper ref={swiperRef} index={1} showsPagination={false} loop={false}>
+    <Swiper
+      ref={swiperRef}
+      index={1}
+      showsPagination={false}
+      loop={false}
+      onIndexChanged={index => {
+        StatusBar.setBarStyle(index === 1 ? 'light-content' : 'dark-content');
+      }}
+    >
       <View style={{ flex: 1 }}>
         <LibraryScreen />
       </View>
