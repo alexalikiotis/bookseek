@@ -18,6 +18,8 @@ import Swiper from 'react-native-swiper';
 import BookHeader from '@/components/BookHeader';
 import BookAttribute from '@/components/BookAttribute';
 
+// import testBook from './book.json'; // Only for development tests
+
 import { sortedBooksSelector } from '@/models/books/selectors';
 
 const propTypes = {
@@ -25,12 +27,12 @@ const propTypes = {
 };
 
 const Books = ({ entities }) => {
-  // const [swiperIndex, setSwiperIndex] = useState(0);
+  const [currentBook, setCurrentBook] = useState(entities[0]);
   const [showMessage, setShowMessage] = useState(true);
 
   return (
     <View style={styles.container}>
-      <BookHeader />
+      <BookHeader currentBook={currentBook} />
       {showMessage && (
         <View style={styles.messageWrapper}>
           <View>
@@ -46,7 +48,7 @@ const Books = ({ entities }) => {
         <Swiper
           loop={false}
           showsPagination={false}
-          // onIndexChanged={newIndex => setSwiperIndex(newIndex)}
+          onIndexChanged={i => setCurrentBook(entities[i])}
         >
           {entities.map(entity => (
             <View key={entity.id} style={{ flex: 1 }}>

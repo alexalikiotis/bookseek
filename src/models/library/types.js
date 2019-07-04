@@ -1,0 +1,2 @@
+export const SAVE_BOOK = 'LIBRARY__SAVE_BOOK';
+export const REMOVE_BOOK = 'LIBRARY__REMOVE_BOOK';
