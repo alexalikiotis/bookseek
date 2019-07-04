@@ -21,10 +21,15 @@ const reducer = (state = initState, action) => {
       };
 
     case searchSuccess.type: {
+      const resluts = action.payload;
+      const sortedResults = resluts.sort((a, b) => {
+        return (b.description || '').length - (a.description || '').length;
+      });
+
       return {
         ...state,
         loading: false,
-        entities: action.payload,
+        entities: sortedResults,
       };
     }
 
