@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import LibraryHeader from '@/components/LibraryHeader';
 import BookSnippet from '@/components/BookSnippet';
 
 const books = [
@@ -69,15 +70,7 @@ const Library = () => {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.safeArea}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Library</Text>
-          <Icon
-            name="md-arrow-round-forward"
-            style={styles.headerIcon}
-            size={35}
-            color="#bdc3c7"
-          />
-        </View>
+        <LibraryHeader />
         {books.length === 0 ? (
           <View style={styles.emptyLibrary}>
             <Icon name="ios-folder-open" color="#ecf0f1" size={150} />
@@ -115,22 +108,6 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-  },
-  headerIcon: {
-    position: 'relative',
-    top: 5,
-  },
-  title: {
-    fontSize: 35,
-    fontWeight: 'bold',
   },
   emptyLibrary: {
     flex: 1,
