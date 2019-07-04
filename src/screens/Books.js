@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'native-base';
@@ -96,10 +97,33 @@ const Books = ({ entities }) => {
                           />
                         </View>
                       </View>
-                      <Button full style={styles.button}>
-                        <Text style={styles.buttonText}>Book Reviews</Text>
-                        <Icon name="ios-arrow-forward" size={30} color="#fff" />
-                      </Button>
+                      <View style={styles.footerContainer}>
+                        <Button
+                          style={{
+                            ...styles.footerButton,
+                            backgroundColor: '#2e86de',
+                          }}
+                        >
+                          <Icon name="ios-chatbubbles" color="#fff" size={25} />
+                          <Text style={styles.footerButtonText}>Reviews</Text>
+                        </Button>
+                        <Button
+                          style={{
+                            ...styles.footerButton,
+                            backgroundColor: '#d63031',
+                          }}
+                          onPress={() =>
+                            Linking.openURL(
+                              `https://play.google.com/store/books/details?id=${item.id}`
+                            )
+                          }
+                        >
+                          <Icon name="md-appstore" color="#fff" size={25} />
+                          <Text style={styles.footerButtonText}>
+                            Buy Online
+                          </Text>
+                        </Button>
+                      </View>
                     </View>
                   </View>
                 )}
@@ -175,17 +199,30 @@ const styles = StyleSheet.create({
     borderColor: '#dfe4ea',
     padding: 20,
   },
-  button: {
-    borderRadius: 0,
-    width: '100%',
+  footerContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 30,
+    marginBottom: 20,
+    paddingHorizontal: 25,
   },
-  buttonText: {
-    fontWeight: 'bold',
+  footerButton: {
+    flex: 1,
+    backgroundColor: '#2e86de',
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    marginHorizontal: 5,
+    borderRadius: 5,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  footerButtonText: {
     color: '#fff',
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 
