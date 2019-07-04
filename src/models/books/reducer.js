@@ -1,3 +1,4 @@
+import normalize from '@/utils/reduxNormalizer';
 import {
   searchRequest,
   searchSuccess,
@@ -7,7 +8,8 @@ import {
 
 const initState = {
   loading: false,
-  entities: [],
+  keys: [],
+  entities: {},
   error: false,
   errorInfo: null,
 };
@@ -21,15 +23,13 @@ const reducer = (state = initState, action) => {
       };
 
     case searchSuccess.type: {
-      const resluts = action.payload;
-      const sortedResults = resluts.sort((a, b) => {
-        return (b.description || '').length - (a.description || '').length;
-      });
+      const [keys, entities] = normalize(action.payload, 'id');
 
       return {
         ...state,
         loading: false,
-        entities: sortedResults,
+        keys,
+        entities,
       };
     }
 

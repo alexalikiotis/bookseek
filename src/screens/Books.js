@@ -18,6 +18,8 @@ import Swiper from 'react-native-swiper';
 import BookHeader from '@/components/BookHeader';
 import BookAttribute from '@/components/BookAttribute';
 
+import { sortedBooksSelector } from '@/models/books/selectors';
+
 const propTypes = {
   entities: PropTypes.array,
 };
@@ -173,6 +175,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 10,
+    textAlign: 'center',
   },
   authors: {
     fontWeight: 'bold',
@@ -226,12 +229,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  const entities = state.books.entities;
-
-  return {
-    entities,
-  };
-};
+const mapStateToProps = state => ({
+  entities: sortedBooksSelector(state),
+});
 
 export default connect(mapStateToProps)(Books);
