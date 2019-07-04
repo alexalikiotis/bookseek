@@ -57,3 +57,6 @@ buck-out/
 
 # Env files
 .env
+
+# The folder for test json data
+/src/demo-assets/

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -8,64 +9,18 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
 
 import LibraryHeader from '@/components/LibraryHeader';
 import BookSnippet from '@/components/BookSnippet';
 
-const books = [
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of hearts',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The deathly hallow',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'Jeez for the win',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The vimpire diaries',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-  {
-    thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
-    title: 'The Queen of England',
-    authors: ['Kimmery Martin'],
-  },
-];
+import { libraryBooksSelector } from '@/models/library/selectors';
 
-const Library = () => {
+const propTypes = {
+  books: PropTypes.array,
+};
+
+const Library = ({ books }) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -102,6 +57,8 @@ const Library = () => {
   );
 };
 
+Library.propTypes = propTypes;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -135,4 +92,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Library;
+const mapStateToProps = state => ({
+  books: libraryBooksSelector(state),
+});
+
+export default connect(mapStateToProps)(Library);

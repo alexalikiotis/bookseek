@@ -20,6 +20,7 @@ const reducer = (state = initState, action) => {
     }
 
     case removeBook.type:
+      // WIP
       return state;
 
     default:

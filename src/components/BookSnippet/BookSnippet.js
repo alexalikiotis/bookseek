@@ -17,7 +17,9 @@ const BookSnippet = ({ thumbnail, title, authors }) => {
         resizeMode="cover"
       />
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title} numberOfLines={2}>
+          {title}
+        </Text>
         <Text style={styles.author} numberOfLines={1}>
           {authors.reduce(
             (str, name, index) =>
@@ -53,10 +55,12 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 12,
+    textAlign: 'center',
   },
   author: {
     color: 'grey',
     fontSize: 12,
+    textAlign: 'center',
   },
 });
 
