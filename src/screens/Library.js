@@ -5,86 +5,64 @@ import {
   StyleSheet,
   SafeAreaView,
   StatusBar,
-  Image,
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import BookSnippet from '@/components/BookSnippet';
 
 const books = [
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of hearts',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The deathly hallow',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'Jeez for the win',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The vimpire diaries',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
   {
     thumbnail: 'https://images.penguinrandomhouse.com/cover/9780399585050',
     title: 'The Queen of England',
-    author: 'Kimmery Martin',
+    authors: ['Kimmery Martin'],
   },
 ];
-
-const BookCard = ({ data }) => (
-  <View
-    style={{
-      width: '33.3%',
-      display: 'flex',
-      alignItems: 'center',
-      padding: 10,
-    }}
-  >
-    <Image
-      source={{ uri: data.thumbnail }}
-      style={{ width: '100%', height: 150, borderRadius: 10 }}
-      resizeMode="cover"
-    />
-    <View style={{ marginTop: 10, width: '95%' }}>
-      <Text style={{ fontWeight: 'bold', fontSize: 12 }}>{data.title}</Text>
-      <Text style={{ color: 'grey', fontSize: 12 }} numberOfLines={1}>
-        {data.author}
-      </Text>
-    </View>
-  </View>
-);
 
 const Library = () => {
   return (
@@ -115,7 +93,12 @@ const Library = () => {
             renderItem={() => (
               <View style={styles.libraryContent}>
                 {books.map((item, index) => (
-                  <BookCard key={index} data={item} />
+                  <BookSnippet
+                    key={index}
+                    thumbnail={item.thumbnail}
+                    title={item.title}
+                    authors={item.authors}
+                  />
                 ))}
               </View>
             )}
