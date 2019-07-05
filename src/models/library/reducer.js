@@ -8,13 +8,16 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case saveBook.type: {
-      const { id: key, ...restItem } = action.payload;
+      const { id: key, title, authors } = action.payload;
       return {
         ...state,
         keys: [...state.keys, key],
         entities: {
           ...state.entities,
-          [key]: restItem,
+          [key]: {
+            title,
+            authors,
+          },
         },
       };
     }

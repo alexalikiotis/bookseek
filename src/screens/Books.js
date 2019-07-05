@@ -35,7 +35,10 @@ import { libraryEntitiesSelector } from '@/models/library/selectors';
 // import testBook from './book.json'; // Only for development tests
 
 const propTypes = {
-  entities: PropTypes.array,
+  navigation: PropTypes.object,
+  results: PropTypes.array,
+  storage: PropTypes.object,
+  saveBook: PropTypes.func,
 };
 
 const Books = ({ navigation, results, storage, saveBook }) => {
