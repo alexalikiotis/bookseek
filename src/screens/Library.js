@@ -6,7 +6,7 @@ import {
   StyleSheet,
   SafeAreaView,
   StatusBar,
-  FlatList,
+  ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
@@ -35,22 +35,18 @@ const Library = ({ books }) => {
             </Text>
           </View>
         ) : (
-          <FlatList
-            data={[{}]}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={() => (
-              <View style={styles.libraryContent}>
-                {books.map((item, index) => (
-                  <BookSnippet
-                    key={index}
-                    thumbnail={item.thumbnail}
-                    title={item.title}
-                    authors={item.authors}
-                  />
-                ))}
-              </View>
-            )}
-          />
+          <ScrollView style={styles.scrollView}>
+            <View style={styles.libraryContent}>
+              {books.map((item, index) => (
+                <BookSnippet
+                  key={index}
+                  thumbnail={item.thumbnail}
+                  title={item.title}
+                  authors={item.authors}
+                />
+              ))}
+            </View>
+          </ScrollView>
         )}
       </SafeAreaView>
     </View>
@@ -82,6 +78,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     color: '#bdc3c7',
+  },
+  scrollView: {
+    flex: 1,
   },
   libraryContent: {
     flex: 1,
