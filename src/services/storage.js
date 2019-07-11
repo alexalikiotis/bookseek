@@ -35,7 +35,7 @@ export const remove = bookId =>
           const allBooks = realm.objects('Book');
           const book = allBooks.filtered(`id = "${bookId}"`);
           realm.delete(book);
-          resolve(book);
+          resolve();
         });
       })
       .catch(err => reject(err));

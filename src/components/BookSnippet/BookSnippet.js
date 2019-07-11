@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const propTypes = {
   thumbnail: PropTypes.string,
   title: PropTypes.string,
   authors: PropTypes.any,
+  handleLongPress: PropTypes.func,
 };
 
-const BookSnippet = ({ thumbnail, title, authors }) => {
+const BookSnippet = ({ thumbnail, title, authors, handleLongPress }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onLongPress={handleLongPress}>
       <Image
         source={{ uri: thumbnail }}
         style={styles.thumbnail}
@@ -30,7 +31,7 @@ const BookSnippet = ({ thumbnail, title, authors }) => {
           )}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

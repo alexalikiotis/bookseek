@@ -44,7 +44,7 @@ export const removeBookEpic = action$ =>
     map(action => action.payload),
     mergeMap(bookId =>
       from(storageService.remove(bookId)).pipe(
-        map(book => removeBookSuccess(book.id)),
+        map(() => removeBookSuccess(bookId)),
         catchError(err => of(removeBookFailed(err)))
       )
     )

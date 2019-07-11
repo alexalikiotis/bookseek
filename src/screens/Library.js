@@ -9,18 +9,43 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { connectActionSheet } from '@expo/react-native-action-sheet';
+import { compose } from 'ramda';
 
 import LibraryHeader from '@/components/LibraryHeader';
 import BookSnippet from '@/components/BookSnippet';
 
 import { libraryBooksSelector } from '@/models/library/selectors';
+import { removeBookRequest } from '@/models/library/actions';
 
 const propTypes = {
   books: PropTypes.array,
+  removeBookRequest: PropTypes.func,
+  showActionSheetWithOptions: PropTypes.func,
 };
 
-const Library = ({ books }) => {
+const Library = ({ books, removeBookRequest, showActionSheetWithOptions }) => {
+  const handleLongPress = bookId => {
+    const options = ['Delete', 'Cancel'];
+    const destructiveButtonIndex = 0;
+    const cancelButtonIndex = 1;
+
+    showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+        destructiveButtonIndex,
+      },
+      buttonIndex => {
+        if (buttonIndex == 0) {
+          removeBookRequest(bookId);
+        }
+      }
+    );
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -43,6 +68,7 @@ const Library = ({ books }) => {
                   thumbnail={item.thumbnail}
                   title={item.title}
                   authors={item.authors}
+                  handleLongPress={() => handleLongPress(item.id)}
                 />
               ))}
             </View>
@@ -95,4 +121,14 @@ const mapStateToProps = state => ({
   books: libraryBooksSelector(state),
 });
 
-export default connect(mapStateToProps)(Library);
+const mapDispatchToProps = dispatch => ({
+  removeBookRequest: bindActionCreators(removeBookRequest, dispatch),
+});
+
+export default compose(
+  connectActionSheet,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Library);

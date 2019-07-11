@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 import AppContainer from '@/navigation/AppContainer';
 import store from '@/store/configureStore';
@@ -14,7 +15,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <AppContainer />
+      <ActionSheetProvider>
+        <AppContainer />
+      </ActionSheetProvider>
     </Provider>
   );
 };

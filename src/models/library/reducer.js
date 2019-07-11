@@ -38,7 +38,8 @@ const reducer = (state = initState, action) => {
     }
 
     case removeBookSuccess.type: {
-      const keys = state.keys.filter(key != action.payload);
+      const keys = state.keys.filter(key => key != action.payload);
+      // eslint-disable-next-line
       const { [action.payload]: key, ...restEntities } = state.entities;
 
       return {
