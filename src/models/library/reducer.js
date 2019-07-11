@@ -1,4 +1,8 @@
-import { saveBookSuccess, loadBooksSuccess } from './actions';
+import {
+  saveBookSuccess,
+  loadBooksSuccess,
+  removeBookSuccess,
+} from './actions';
 
 import normalizer from '@/utils/reduxNormalizer';
 
@@ -30,6 +34,17 @@ const reducer = (state = initState, action) => {
         ...state,
         keys,
         entities,
+      };
+    }
+
+    case removeBookSuccess.type: {
+      const keys = state.keys.filter(key != action.payload);
+      const { [action.payload]: key, ...restEntities } = state.entities;
+
+      return {
+        ...state,
+        keys,
+        entities: restEntities,
       };
     }
 

@@ -9,6 +9,9 @@ import {
   loadBooksRequest,
   loadBooksSuccess,
   loadBooksFailed,
+  removeBookRequest,
+  removeBookSuccess,
+  removeBookFailed,
 } from './actions';
 import * as storageService from '@/services/storage';
 
@@ -19,10 +22,7 @@ export const saveBookEpic = action$ =>
     mergeMap(book =>
       from(storageService.save(book)).pipe(
         map(savedBook => saveBookSuccess(savedBook)),
-        catchError(err => {
-          console.log(err);
-          return of(saveBookFailed(err));
-        })
+        catchError(err => of(saveBookFailed(err)))
       )
     )
   );
@@ -33,10 +33,19 @@ export const loadBooksEpic = action$ =>
     switchMap(() =>
       from(storageService.load()).pipe(
         map(allBooks => loadBooksSuccess(allBooks)),
-        catchError(err => {
-          console.log(err);
-          return of(loadBooksFailed(err));
-        })
+        catchError(err => of(loadBooksFailed(err)))
+      )
+    )
+  );
+
+export const removeBookEpic = action$ =>
+  action$.pipe(
+    ofType(removeBookRequest.type),
+    map(action => action.payload),
+    mergeMap(bookId =>
+      from(storageService.remove(bookId)).pipe(
+        map(book => removeBookSuccess(book.id)),
+        catchError(err => of(removeBookFailed(err)))
       )
     )
   );

@@ -20,10 +20,22 @@ export const load = () =>
     Realm.open(databaseOptions)
       .then(realm => {
         realm.write(() => {
-          const realmBooks = realm.objects('Book');
-          // const allBooks = JSON.parse(JSON.stringify(realmBooks));
-          // console.log('DEBUG ==> ', allBooks);
-          resolve(realmBooks);
+          const allBooks = realm.objects('Book');
+          resolve(allBooks);
+        });
+      })
+      .catch(err => reject(err));
+  });
+
+export const remove = bookId =>
+  new Promise((resolve, reject) => {
+    Realm.open(databaseOptions)
+      .then(realm => {
+        realm.write(() => {
+          const allBooks = realm.objects('Book');
+          const book = allBooks.filtered(`id = "${bookId}"`);
+          realm.delete(book);
+          resolve(book);
         });
       })
       .catch(err => reject(err));
