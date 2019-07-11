@@ -1,4 +1,6 @@
-import { saveBook, removeBook } from './actions';
+import { saveBookSuccess, loadBooksSuccess } from './actions';
+
+import normalizer from '@/utils/reduxNormalizer';
 
 const initState = {
   keys: [],
@@ -7,7 +9,7 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case saveBook.type: {
+    case saveBookSuccess.type: {
       const { id: key, title, authors } = action.payload;
       return {
         ...state,
@@ -22,9 +24,14 @@ const reducer = (state = initState, action) => {
       };
     }
 
-    case removeBook.type:
-      // WIP
-      return state;
+    case loadBooksSuccess.type: {
+      const [keys, entities] = normalizer(action.payload, 'id');
+      return {
+        ...state,
+        keys,
+        entities,
+      };
+    }
 
     default:
       return state;

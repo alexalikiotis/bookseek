@@ -28,7 +28,7 @@ import Swiper from 'react-native-swiper';
 import Toast from 'react-native-root-toast';
 
 import BookPreview from '@/components/BookPreview';
-import { saveBook } from '@/models/library/actions';
+import { saveBookRequest } from '@/models/library/actions';
 import { sortedBooksSelector } from '@/models/books/selectors';
 import { libraryEntitiesSelector } from '@/models/library/selectors';
 
@@ -38,10 +38,10 @@ const propTypes = {
   navigation: PropTypes.object,
   results: PropTypes.array,
   storage: PropTypes.object,
-  saveBook: PropTypes.func,
+  saveBookRequest: PropTypes.func,
 };
 
-const Books = ({ navigation, results, storage, saveBook }) => {
+const Books = ({ navigation, results, storage, saveBookRequest }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [showMessage, setShowMessage] = useState(true);
 
@@ -49,7 +49,7 @@ const Books = ({ navigation, results, storage, saveBook }) => {
 
   const handleSaveToLibrary = () => {
     if (results[swiperIndex]) {
-      saveBook(results[swiperIndex]);
+      saveBookRequest(results[swiperIndex]);
       Toast.show('Book saved in library', {
         duration: Toast.durations.SHORT,
         position: Toast.positions.BOTTOM,
@@ -135,7 +135,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveBook: bindActionCreators(saveBook, dispatch),
+  saveBookRequest: bindActionCreators(saveBookRequest, dispatch),
 });
 
 export default compose(
