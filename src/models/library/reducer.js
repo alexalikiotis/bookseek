@@ -5,6 +5,7 @@ import {
 } from './actions';
 
 import normalizer from '@/utils/reduxNormalizer';
+// import console = require('console');
 
 const initState = {
   keys: [],

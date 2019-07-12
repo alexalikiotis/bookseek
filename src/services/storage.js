@@ -1,42 +1,34 @@
-import Realm from 'realm';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import { databaseOptions } from '@/realm/schema';
+export const save = async book => {
+  try {
+    const bookList = (await AsyncStorage.getItem('bsLocal__library')) || '[]';
+    const bookListParsed = JSON.parse(bookList);
+    const newBookList = [...bookListParsed, book];
+    await AsyncStorage.setItem('bsLocal__library', JSON.stringify(newBookList));
+    return book;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
 
-export const save = book =>
-  new Promise((resolve, reject) => {
-    Realm.open(databaseOptions)
-      .then(realm => {
-        realm.write(() => {
-          const savedBook = realm.create('Book', book);
-          console.log(savedBook);
-          resolve(savedBook);
-        });
-      })
-      .catch(err => reject(err));
-  });
+export const load = async () => {
+  try {
+    const bookList = (await AsyncStorage.getItem('bsLocal__library')) || '[]';
+    return JSON.parse(bookList);
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
 
-export const load = () =>
-  new Promise((resolve, reject) => {
-    Realm.open(databaseOptions)
-      .then(realm => {
-        realm.write(() => {
-          const allBooks = realm.objects('Book');
-          resolve(allBooks);
-        });
-      })
-      .catch(err => reject(err));
-  });
-
-export const remove = bookId =>
-  new Promise((resolve, reject) => {
-    Realm.open(databaseOptions)
-      .then(realm => {
-        realm.write(() => {
-          const allBooks = realm.objects('Book');
-          const book = allBooks.filtered(`id = "${bookId}"`);
-          realm.delete(book);
-          resolve();
-        });
-      })
-      .catch(err => reject(err));
-  });
+export const remove = async bookId => {
+  try {
+    const bookList = (await AsyncStorage.getItem('bsLocal__library')) || '[]';
+    const bookListParded = JSON.parse(bookList);
+    const newBookList = bookListParded.filter(item => item.id != bookId);
+    await AsyncStorage.setItem('bsLocal__library', JSON.stringify(newBookList));
+    return bookId;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
