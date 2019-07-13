@@ -44,7 +44,7 @@ export const recognizePicture = async picture => {
   // Search Google Books API for given text
 
   const googleBooksUri = 'https://www.googleapis.com/books/v1/volumes?q=';
-  const googleBooksUrl = googleBooksUri + responseData.replace('\n', ' ');
+  const googleBooksUrl = googleBooksUri + responseData.split('\n').join(' ');
 
   console.log('Requesting data from google books...');
   response = await axios.get(googleBooksUrl);
@@ -53,8 +53,6 @@ export const recognizePicture = async picture => {
   if (responseData.totalItems === 0) {
     throw new Error('No results from google books');
   }
-
-  console.log(responseData);
 
   const items = responseData.items.map(item => ({
     id: item.id,
