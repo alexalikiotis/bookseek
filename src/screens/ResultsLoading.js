@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { MaterialIndicator } from 'react-native-indicators';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { searchCanceled } from '@/models/books/actions';
+import { searchCanceled } from '@/models/results/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
@@ -21,11 +21,11 @@ const propTypes = {
   searchCanceled: PropTypes.func,
 };
 
-const BooksLoading = ({ navigation, loading, error, searchCanceled }) => {
+const ResultsLoading = ({ navigation, loading, error, searchCanceled }) => {
   const [canceled, setCanceled] = useState(false);
   useEffect(() => {
     if (!loading && !canceled) {
-      navigation.navigate(error ? 'BooksError' : 'Books');
+      navigation.navigate(error ? 'ResultsError' : 'Results');
     }
   }, [loading]);
 
@@ -54,7 +54,7 @@ const BooksLoading = ({ navigation, loading, error, searchCanceled }) => {
   );
 };
 
-BooksLoading.propTypes = propTypes;
+ResultsLoading.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const loading = state.books.loading;
-  const error = state.books.error;
+  const loading = state.results.loading;
+  const error = state.results.error;
 
   return {
     loading,
@@ -100,4 +100,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BooksLoading);
+)(ResultsLoading);

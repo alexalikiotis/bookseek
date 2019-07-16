@@ -6,17 +6,17 @@ import {
 
 import CameraSwiper from './CameraSwiper';
 
-import BooksLoadingScreen from '@/screens/BooksLoading';
-import BooksErrorScreen from '@/screens/BooksError';
-import BooksScreen from '@/screens/Books';
+import ResultsLoadingScreen from '@/screens/ResultsLoading';
+import ResultsErrorScreen from '@/screens/ResultsError';
+import ResultsScreen from '@/screens/Results';
 import PermissionsPendingScreen from '@/screens/PermissionsPending';
 import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 
-const BooksNavigator = createStackNavigator(
+const ResultsNavigator = createStackNavigator(
   {
-    BooksLoading: BooksLoadingScreen,
-    BooksError: BooksErrorScreen,
-    Books: BooksScreen,
+    ResultsLoading: ResultsLoadingScreen,
+    ResultsError: ResultsErrorScreen,
+    Results: ResultsScreen,
   },
   { headerMode: 'none' }
 );
@@ -24,7 +24,7 @@ const BooksNavigator = createStackNavigator(
 const AppStack = createStackNavigator(
   {
     Camera: CameraSwiper,
-    Books: BooksNavigator,
+    Results: ResultsNavigator,
   },
   {
     initialRouteName: 'Camera',

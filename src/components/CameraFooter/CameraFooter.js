@@ -8,7 +8,7 @@ import { withNavigation } from 'react-navigation';
 import { compose } from 'ramda';
 
 import { setOffset } from '@/models/swiper/actions';
-import { searchRequest } from '@/models/books/actions';
+import { searchRequest } from '@/models/results/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
@@ -33,7 +33,7 @@ const CameraFooter = ({ navigation, cameraRef, setOffset, searchRequest }) => {
     //   navigation.navigate('Books');
     // }
     searchRequest();
-    navigation.navigate('Books');
+    navigation.navigate('Results');
   };
 
   return (

@@ -15,7 +15,7 @@ const propTypes = {
   navigation: PropTypes.object,
 };
 
-const BooksError = ({ navigation }) => {
+const ResultsError = ({ navigation }) => {
   const handleGoBack = () => navigation.dismiss();
 
   return (
@@ -47,7 +47,7 @@ const BooksError = ({ navigation }) => {
   );
 };
 
-BooksError.propTypes = propTypes;
+ResultsError.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BooksError;
+export default ResultsError;

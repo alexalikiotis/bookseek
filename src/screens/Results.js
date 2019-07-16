@@ -29,7 +29,7 @@ import Toast from 'react-native-root-toast';
 
 import BookPreview from '@/components/BookPreview';
 import { saveBookRequest } from '@/models/library/actions';
-import { sortedBooksSelector } from '@/models/books/selectors';
+import { sortedBooksSelector } from '@/models/results/selectors';
 import { libraryEntitiesSelector } from '@/models/library/selectors';
 
 // import testBook from './book.json'; // Only for development tests
@@ -41,7 +41,7 @@ const propTypes = {
   saveBookRequest: PropTypes.func,
 };
 
-const Books = ({ navigation, results, storage, saveBookRequest }) => {
+const Results = ({ navigation, results, storage, saveBookRequest }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [showMessage, setShowMessage] = useState(true);
 
@@ -108,7 +108,7 @@ const Books = ({ navigation, results, storage, saveBookRequest }) => {
   );
 };
 
-Books.propTypes = propTypes;
+Results.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -144,4 +144,4 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(Books);
+)(Results);

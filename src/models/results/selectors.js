@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const keysSelector = state => state.books.keys;
-const entitiesSelector = state => state.books.entities;
+const keysSelector = state => state.results.keys;
+const entitiesSelector = state => state.results.entities;
 
 export const sortedBooksSelector = createSelector(
   keysSelector,
