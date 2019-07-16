@@ -7,12 +7,8 @@ export const sortedBooksSelector = createSelector(
   keysSelector,
   entitiesSelector,
   (keys, entities) =>
-    keys
-      .reduce(
-        (bookList, key) => [...bookList, { id: key, ...entities[key] }],
-        []
-      )
-      .sort(
-        (a, b) => (b.description || '').length - (a.description || '').length
-      )
+    keys.reduce(
+      (bookList, key) => [...bookList, { id: key, ...entities[key] }],
+      []
+    )
 );
