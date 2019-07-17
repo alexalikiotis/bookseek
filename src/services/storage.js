@@ -24,8 +24,8 @@ export const load = async () => {
 export const remove = async bookId => {
   try {
     const bookList = (await AsyncStorage.getItem('bsLocal__library')) || '[]';
-    const bookListParded = JSON.parse(bookList);
-    const newBookList = bookListParded.filter(item => item.id != bookId);
+    const bookListParsed = JSON.parse(bookList);
+    const newBookList = bookListParsed.filter(item => item.id != bookId);
     await AsyncStorage.setItem('bsLocal__library', JSON.stringify(newBookList));
     return bookId;
   } catch (err) {
