@@ -68,7 +68,7 @@ export const recognizePicture = async picture => {
       publishedDate: item.volumeInfo.publishedDate,
       publisher: item.volumeInfo.publisher,
       industryIdentifiers: item.volumeInfo.industryIdentifiers,
-      // averageRating: item.volumeInfo.averageRating,
+      averageRating: item.volumeInfo.averageRating,
       // ratingsCount: item.volumeInfo.ratingsCount,
       // maturityRating: item.volumeInfo.maturityRating,
     }))

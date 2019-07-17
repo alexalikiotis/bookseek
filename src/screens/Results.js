@@ -32,7 +32,7 @@ import { saveBookRequest } from '@/models/library/actions';
 import { sortedBooksSelector } from '@/models/results/selectors';
 import { libraryEntitiesSelector } from '@/models/library/selectors';
 
-// import testBook from './book.json'; // Only for development tests
+// import testBook from '../demo-assets/book.json'; // Only for development tests
 
 const propTypes = {
   navigation: PropTypes.object,

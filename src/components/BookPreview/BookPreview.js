@@ -9,6 +9,7 @@ import {
   Linking,
 } from 'react-native';
 import { Button } from 'native-base';
+import { AirbnbRating } from 'react-native-ratings';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import BookAttribute from '@/components/BookAttribute';
@@ -40,6 +41,17 @@ const BookPreview = ({ item }) => {
                 ''
               )}
             </Text>
+            {item.averageRating && (
+              <View style={styles.ratings}>
+                <AirbnbRating
+                  count={5}
+                  defaultRating={item.averageRating}
+                  size={25}
+                  showRating={false}
+                  isDisabled
+                />
+              </View>
+            )}
           </View>
         </View>
         <View style={styles.descriptionWrapper}>
@@ -109,6 +121,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     textAlign: 'center',
+  },
+  ratings: {
+    marginTop: 20,
   },
   authors: {
     fontWeight: 'bold',
