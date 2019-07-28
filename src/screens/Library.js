@@ -13,20 +13,30 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { connectActionSheet } from '@expo/react-native-action-sheet';
 import { compose } from 'ramda';
+import { withNavigation } from 'react-navigation';
 
 import LibraryHeader from '@/components/LibraryHeader';
 import BookSnippet from '@/components/BookSnippet';
 
 import { libraryBooksSelector } from '@/models/library/selectors';
 import { removeBookRequest } from '@/models/library/actions';
+import { previewRequest } from '@/models/results/actions';
 
 const propTypes = {
+  navigation: PropTypes.object,
   books: PropTypes.array,
+  previewRequest: PropTypes.func,
   removeBookRequest: PropTypes.func,
   showActionSheetWithOptions: PropTypes.func,
 };
 
-const Library = ({ books, removeBookRequest, showActionSheetWithOptions }) => {
+const Library = ({
+  navigation,
+  books,
+  previewRequest,
+  removeBookRequest,
+  showActionSheetWithOptions,
+}) => {
   const handleLongPress = bookId => {
     const options = ['Delete', 'Cancel'];
     const destructiveButtonIndex = 0;
@@ -44,6 +54,11 @@ const Library = ({ books, removeBookRequest, showActionSheetWithOptions }) => {
         }
       }
     );
+  };
+
+  const handlePress = bookId => {
+    previewRequest(bookId);
+    navigation.push('Preview');
   };
 
   return (
@@ -68,6 +83,7 @@ const Library = ({ books, removeBookRequest, showActionSheetWithOptions }) => {
                   thumbnail={item.thumbnail}
                   title={item.title}
                   authors={item.authors}
+                  handlePress={() => handlePress(item.id)}
                   handleLongPress={() => handleLongPress(item.id)}
                 />
               ))}
@@ -123,9 +139,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   removeBookRequest: bindActionCreators(removeBookRequest, dispatch),
+  previewRequest: bindActionCreators(previewRequest, dispatch),
 });
 
 export default compose(
+  withNavigation,
   connectActionSheet,
   connect(
     mapStateToProps,

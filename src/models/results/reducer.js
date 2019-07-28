@@ -4,6 +4,10 @@ import {
   searchSuccess,
   searchFailed,
   searchCanceled,
+  previewRequest,
+  previewSuccess,
+  previewFailed,
+  previewCanceled,
 } from './actions';
 
 const initState = {
@@ -17,12 +21,14 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case searchRequest.type:
+    case previewRequest.type:
       return {
         ...initState,
         loading: true,
       };
 
-    case searchSuccess.type: {
+    case searchSuccess.type:
+    case previewSuccess.type: {
       const [keys, entities] = normalize(action.payload, 'id');
 
       return {
@@ -34,6 +40,7 @@ const reducer = (state = initState, action) => {
     }
 
     case searchFailed.type:
+    case previewFailed.type:
       return {
         ...state,
         loading: false,
@@ -42,6 +49,7 @@ const reducer = (state = initState, action) => {
       };
 
     case searchCanceled.type:
+    case previewCanceled.type:
       return initState;
 
     default:

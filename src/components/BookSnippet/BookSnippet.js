@@ -9,9 +9,19 @@ const propTypes = {
   handleLongPress: PropTypes.func,
 };
 
-const BookSnippet = ({ thumbnail, title, authors, handleLongPress }) => {
+const BookSnippet = ({
+  thumbnail,
+  title,
+  authors,
+  handlePress,
+  handleLongPress,
+}) => {
   return (
-    <TouchableOpacity style={styles.container} onLongPress={handleLongPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onLongPress={handleLongPress}
+      onPress={handlePress}
+    >
       <Image
         source={{ uri: thumbnail }}
         style={styles.thumbnail}

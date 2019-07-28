@@ -67,7 +67,7 @@ const Results = ({ navigation, results, storage, saveBookRequest }) => {
           </Button>
         </Left>
         <Body>
-          <Title>Books</Title>
+          <Title>Results</Title>
         </Body>
         <Right>
           {storage[results[swiperIndex].id] !== undefined ? (

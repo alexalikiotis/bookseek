@@ -12,3 +12,13 @@ export const sortedBooksSelector = createSelector(
       []
     )
 );
+
+export const bookPreviewSelector = state => {
+  const key = keysSelector(state)[0];
+  const entity = entitiesSelector(state)[key];
+
+  return {
+    id: key,
+    ...entity,
+  };
+};

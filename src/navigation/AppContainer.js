@@ -11,6 +11,7 @@ import ResultsErrorScreen from '@/screens/ResultsError';
 import ResultsScreen from '@/screens/Results';
 import PermissionsPendingScreen from '@/screens/PermissionsPending';
 import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
+import PreviewScreen from '@/screens/Preview';
 
 const ResultsNavigator = createStackNavigator(
   {
@@ -25,6 +26,7 @@ const AppStack = createStackNavigator(
   {
     Camera: CameraSwiper,
     Results: ResultsNavigator,
+    Preview: PreviewScreen,
   },
   {
     initialRouteName: 'Camera',
