@@ -27,5 +27,5 @@ export const getBookById = async id => {
     averageRating: item.volumeInfo.averageRating,
   }));
 
-  return items;
+  return items[0];
 };

@@ -24,7 +24,6 @@ import { connect } from 'react-redux';
 import { compose } from 'ramda';
 
 import BookPreview from '@/components/BookPreview';
-import { bookPreviewSelector } from '@/models/results/selectors';
 
 const propTypes = {
   navigation: PropTypes.object,
@@ -124,9 +123,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  item: bookPreviewSelector(state),
-  loading: state.results.loading,
-  error: state.results.error,
+  item: state.preview.data,
+  loading: state.preview.loading,
+  error: state.preview.error,
 });
 
 export default compose(

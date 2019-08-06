@@ -20,7 +20,7 @@ import BookSnippet from '@/components/BookSnippet';
 
 import { libraryBooksSelector } from '@/models/library/selectors';
 import { removeBookRequest } from '@/models/library/actions';
-import { previewRequest } from '@/models/results/actions';
+import { previewRequest } from '@/models/preview/actions';
 
 const propTypes = {
   navigation: PropTypes.object,
