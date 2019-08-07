@@ -8,7 +8,7 @@ const propTypes = {
 
 const ReviewCard = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onPress={() => console.log('Works!')}>
       <View style={styles.header}>
         <Image
           source={{ uri: item.source_logo }}
@@ -20,9 +20,22 @@ const ReviewCard = ({ item }) => {
           <Text style={styles.sourceRating}>{item.star_rating} / 5</Text>
         </View>
       </View>
-      <View style={styles.snippet}>
-        <Text>{item.snippet}</Text>
-      </View>
+      <Text style={styles.snippet}>{item.snippet}</Text>
+      {item.review_date && (
+        <Text
+          style={{
+            marginTop: 10,
+            color: '#7f8c8d',
+            fontSize: 12,
+          }}
+        >
+          Published on{' '}
+          {item.review_date
+            .split('-')
+            .reverse()
+            .join('/')}
+        </Text>
+      )}
     </View>
   );
 };
@@ -33,6 +46,11 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     padding: 10,
+    marginBottom: 15,
+    borderRadius: 10,
+    backgroundColor: '#f1f2f6',
+    borderColor: '#dfe4ea',
+    borderWidth: 1,
   },
   header: {
     display: 'flex',
@@ -42,6 +60,7 @@ const styles = StyleSheet.create({
   sourceImage: {
     width: 50,
     height: 50,
+    borderRadius: 10,
   },
   headerInfo: {
     marginLeft: 10,
@@ -52,7 +71,7 @@ const styles = StyleSheet.create({
   },
   sourceRating: {
     fontWeight: 'bold',
-    color: 'gray',
+    color: '#7f8c8d',
   },
   snippet: {
     marginTop: 10,

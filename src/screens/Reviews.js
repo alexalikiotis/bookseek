@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import {
   Header,
   Left,
@@ -22,6 +29,7 @@ const Reviews = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <Header>
         <Left>
           <Button transparent>
@@ -36,9 +44,11 @@ const Reviews = () => {
       </Header>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView style={styles.scrollView}>
+          <Text style={styles.title}>Reviews by idreambooks.com</Text>
           {reviewsData.reviews.map((item, index) => (
             <ReviewCard item={item} key={index} />
           ))}
+          <Text style={styles.readMore}>Read More...</Text>
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -52,8 +62,24 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
+  title: {
+    fontSize: 15,
+    opacity: 0.5,
+    marginBottom: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   scrollView: {
     flex: 1,
+    padding: 15,
+  },
+  readMore: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginTop: 5,
+    marginBottom: 25,
+    color: '#2e86de',
+    fontWeight: 'bold',
   },
 });
 
