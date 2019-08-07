@@ -25,9 +25,10 @@ const ResultsNavigator = createStackNavigator(
 
 const AppStack = createStackNavigator(
   {
-    Camera: ReviewsScreen,
+    Camera: CameraSwiper,
     Results: ResultsNavigator,
     Preview: PreviewScreen,
+    Reviews: ReviewsScreen,
   },
   {
     initialRouteName: 'Camera',

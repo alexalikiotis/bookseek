@@ -8,17 +8,24 @@ import {
   StyleSheet,
   Linking,
 } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
+import { compose } from 'ramda';
 import { Button } from 'native-base';
 import { AirbnbRating } from 'react-native-ratings';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import BookAttribute from '@/components/BookAttribute';
+import { reviewsRequest } from '@/models/reviews/actions';
 
 const propTypes = {
   item: PropTypes.object,
 };
 
-const BookPreview = ({ item }) => {
+const BookPreview = ({ navigation, item, reviewsRequest }) => {
+  console.log(item);
+
   return (
     <ScrollView style={styles.scrollView}>
       <View style={{ flex: 1 }}>
@@ -70,6 +77,10 @@ const BookPreview = ({ item }) => {
               style={{
                 ...styles.footerButton,
                 backgroundColor: '#2e86de',
+              }}
+              onPress={() => {
+                reviewsRequest(item.industryIdentifiers);
+                navigation.navigate('Reviews');
               }}
             >
               <Icon name="ios-chatbubbles" color="#fff" size={25} />
@@ -177,4 +188,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookPreview;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  reviewsRequest: bindActionCreators(reviewsRequest, dispatch),
+});
+
+export default compose(
+  withNavigation,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(BookPreview);

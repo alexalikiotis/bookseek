@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
+import { compose } from 'ramda';
 import {
   View,
   Text,
@@ -6,6 +10,9 @@ import {
   ScrollView,
   StyleSheet,
   StatusBar,
+  ActivityIndicator,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import {
   Header,
@@ -17,22 +24,33 @@ import {
   Text as NativeBaseText,
   Icon as NativeBaseIcon,
 } from 'native-base';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import ReviewCard from '@/components/ReviewCard';
+import {
+  loadingSelector,
+  reviewLinkSelector,
+  reviewsSelector,
+} from '@/models/reviews/selectors';
 
-import reviewsData from '@/demo-assets/reviews.json';
+const propTypes = {
+  navigation: PropTypes.object,
+  loading: PropTypes.bool,
+  reviewLink: PropTypes.string,
+  reviews: PropTypes.array,
+};
 
-const Reviews = () => {
-  const item = reviewsData.reviews[0];
-
-  console.log(item);
+const Reviews = ({ navigation, loading, reviewLink, reviews }) => {
+  const handleGoBack = () => {
+    navigation.pop();
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <Header>
         <Left>
-          <Button transparent>
+          <Button transparent onPress={handleGoBack}>
             <NativeBaseIcon name="arrow-back" />
             <NativeBaseText>Back</NativeBaseText>
           </Button>
@@ -43,17 +61,49 @@ const Reviews = () => {
         <Right />
       </Header>
       <SafeAreaView style={styles.safeArea}>
-        <ScrollView style={styles.scrollView}>
-          <Text style={styles.title}>Reviews by idreambooks.com</Text>
-          {reviewsData.reviews.map((item, index) => (
-            <ReviewCard item={item} key={index} />
-          ))}
-          <Text style={styles.readMore}>Read More...</Text>
-        </ScrollView>
+        {loading ? (
+          <View style={styles.loading}>
+            <ActivityIndicator />
+            <Text style={styles.loadingText}>Please Wait</Text>
+          </View>
+        ) : (
+          <React.Fragment>
+            {reviews.length === 0 ? (
+              <View style={styles.error}>
+                <Icon
+                  name="ios-alert"
+                  size={50}
+                  color="#000"
+                  style={styles.errorIcon}
+                />
+                <Text style={styles.errorText}>Oops!</Text>
+                <Text style={styles.errorSubText}>
+                  We could not find reviews for this book :(
+                </Text>
+              </View>
+            ) : (
+              <ScrollView style={styles.scrollView}>
+                <Text style={styles.title}>Reviews by idreambooks.com</Text>
+                {reviews.map((item, index) => (
+                  <ReviewCard item={item} key={index} />
+                ))}
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(reviewLink);
+                  }}
+                >
+                  <Text style={styles.readMore}>Read More...</Text>
+                </TouchableOpacity>
+              </ScrollView>
+            )}
+          </React.Fragment>
+        )}
       </SafeAreaView>
     </View>
   );
 };
+
+Reviews.propTypes = propTypes;
 
 const styles = StyleSheet.create({
   container: {
@@ -61,6 +111,35 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
+  },
+  loading: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 20,
+    opacity: 0.5,
+  },
+  error: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorIcon: {
+    opacity: 0.5,
+  },
+  errorText: {
+    marginTop: 20,
+    fontWeight: 'bold',
+    opacity: 0.5,
+  },
+  errorSubText: {
+    marginTop: 5,
+    fontWeight: 'bold',
+    opacity: 0.5,
   },
   title: {
     fontSize: 15,
@@ -83,4 +162,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Reviews;
+const mapStateToProps = state => ({
+  loading: loadingSelector(state),
+  reviewLink: reviewLinkSelector(state),
+  reviews: reviewsSelector(state),
+});
+
+export default compose(
+  withNavigation,
+  connect(mapStateToProps)
+)(Reviews);
