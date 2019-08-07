@@ -12,6 +12,7 @@ import ResultsScreen from '@/screens/Results';
 import PermissionsPendingScreen from '@/screens/PermissionsPending';
 import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 import PreviewScreen from '@/screens/Preview';
+import ReviewsScreen from '@/screens/Reviews';
 
 const ResultsNavigator = createStackNavigator(
   {
@@ -24,7 +25,7 @@ const ResultsNavigator = createStackNavigator(
 
 const AppStack = createStackNavigator(
   {
-    Camera: CameraSwiper,
+    Camera: ReviewsScreen,
     Results: ResultsNavigator,
     Preview: PreviewScreen,
   },

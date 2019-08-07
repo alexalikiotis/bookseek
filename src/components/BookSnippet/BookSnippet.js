@@ -6,6 +6,7 @@ const propTypes = {
   thumbnail: PropTypes.string,
   title: PropTypes.string,
   authors: PropTypes.any,
+  handlePress: PropTypes.func,
   handleLongPress: PropTypes.func,
 };
 
