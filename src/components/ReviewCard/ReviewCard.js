@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
+import NoImageAvailable from '@/assets/no-image-available.jpg';
+
 const propTypes = {
   item: PropTypes.object,
 };
@@ -10,11 +12,20 @@ const ReviewCard = ({ item }) => {
   return (
     <View style={styles.container} onPress={() => console.log('Works!')}>
       <View style={styles.header}>
-        <Image
-          source={{ uri: item.source_logo }}
-          style={styles.sourceImage}
-          resizeMode="cover"
-        />
+        {item.source_logo ? (
+          <Image
+            source={{ uri: item.source_logo }}
+            style={styles.sourceImage}
+            resizeMode="cover"
+          />
+        ) : (
+          <Image
+            source={NoImageAvailable}
+            style={styles.sourceImage}
+            resizeMode="cover"
+          />
+        )}
+
         <View style={styles.headerInfo}>
           <Text style={styles.sourceText}>{item.source}</Text>
           <Text style={styles.sourceRating}>{item.star_rating} / 5</Text>
