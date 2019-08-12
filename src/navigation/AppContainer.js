@@ -14,6 +14,8 @@ import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 import PreviewScreen from '@/screens/Preview';
 import ReviewsScreen from '@/screens/Reviews';
 
+import SettingsScreen from '@/screens/Settings';
+
 const ResultsNavigator = createStackNavigator(
   {
     ResultsLoading: ResultsLoadingScreen,
@@ -25,7 +27,7 @@ const ResultsNavigator = createStackNavigator(
 
 const AppStack = createStackNavigator(
   {
-    Camera: CameraSwiper,
+    Camera: SettingsScreen,
     Results: ResultsNavigator,
     Preview: PreviewScreen,
     Reviews: ReviewsScreen,
