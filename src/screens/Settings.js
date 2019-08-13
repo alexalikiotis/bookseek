@@ -18,14 +18,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { setOffset } from '@/models/swiper/actions';
+import { settingsUpdate } from '@/models/settings/actions';
+import { settingsSelector } from '@/models/settings/selectors';
+
+import { formatPictureQuality } from '@/utils/formatters';
 
 const propTypes = {
+  settings: PropTypes.object,
   setOffset: PropTypes.func,
+  settingsUpdate: PropTypes.func,
 };
 
-const Settings = ({ setOffset }) => {
+const Settings = ({ settings, setOffset, settingsUpdate }) => {
   const handleGoBack = () => {
     setOffset(-1);
+  };
+
+  const handleSwitch = (key, value) => {
+    settingsUpdate({
+      [key]: value,
+    });
   };
 
   return (
@@ -46,7 +58,7 @@ const Settings = ({ setOffset }) => {
         <View style={styles.group}>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#FF9501' }}>
+              <Button style={styles.activeButton}>
                 <Icon active name="ios-flash" />
               </Button>
             </Left>
@@ -54,12 +66,15 @@ const Settings = ({ setOffset }) => {
               <Text>Flash</Text>
             </Body>
             <Right>
-              <Switch value={false} />
+              <Switch
+                value={settings.flash}
+                onValueChange={value => handleSwitch('flash', value)}
+              />
             </Right>
           </ListItem>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
+              <Button style={styles.button}>
                 <Icon active name="ios-eye" />
               </Button>
             </Left>
@@ -67,13 +82,13 @@ const Settings = ({ setOffset }) => {
               <Text>Picture Quality</Text>
             </Body>
             <Right>
-              <Text>Very High</Text>
+              <Text>{formatPictureQuality(settings.pictureQuality)}</Text>
               <Icon active name="arrow-forward" />
             </Right>
           </ListItem>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
+              <Button style={styles.button}>
                 <Icon active name="ios-color-wand" />
               </Button>
             </Left>
@@ -81,12 +96,15 @@ const Settings = ({ setOffset }) => {
               <Text>Skip Processing</Text>
             </Body>
             <Right>
-              <Switch value={true} />
+              <Switch
+                value={settings.skipProcessing}
+                onValueChange={value => handleSwitch('skipProcessing', value)}
+              />
             </Right>
           </ListItem>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
+              <Button style={styles.button}>
                 <Icon active name="ios-pause" />
               </Button>
             </Left>
@@ -94,14 +112,17 @@ const Settings = ({ setOffset }) => {
               <Text>Pause On Capture</Text>
             </Body>
             <Right>
-              <Switch value={true} />
+              <Switch
+                value={settings.pauseOnCapture}
+                onValueChange={value => handleSwitch('pauseOnCapture', value)}
+              />
             </Right>
           </ListItem>
         </View>
         <View style={styles.group}>
           <ListItem icon>
             <Left>
-              <Button style={{ backgroundColor: '#007AFF' }}>
+              <Button style={styles.button}>
                 <Icon active name="ios-search" />
               </Button>
             </Left>
@@ -109,7 +130,7 @@ const Settings = ({ setOffset }) => {
               <Text>Book Suggestions</Text>
             </Body>
             <Right>
-              <Text>3</Text>
+              <Text>{settings.bookSuggestions}</Text>
               <Icon active name="arrow-forward" />
             </Right>
           </ListItem>
@@ -128,12 +149,21 @@ const styles = StyleSheet.create({
   group: {
     marginVertical: 20,
   },
+  activeButton: {
+    backgroundColor: '#FF9501',
+  },
+  button: {
+    backgroundColor: '#007AFF',
+  },
 });
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  settings: settingsSelector(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   setOffset: bindActionCreators(setOffset, dispatch),
+  settingsUpdate: bindActionCreators(settingsUpdate, dispatch),
 });
 
 export default connect(
