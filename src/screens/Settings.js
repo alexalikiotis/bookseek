@@ -14,8 +14,10 @@ import {
   ListItem,
   Switch,
 } from 'native-base';
+import { compose } from 'ramda';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withNavigation } from 'react-navigation';
 
 import { setOffset } from '@/models/swiper/actions';
 import { settingsUpdate } from '@/models/settings/actions';
@@ -24,12 +26,13 @@ import { settingsSelector } from '@/models/settings/selectors';
 import { formatPictureQuality } from '@/utils/formatters';
 
 const propTypes = {
+  navigation: PropTypes.object,
   settings: PropTypes.object,
   setOffset: PropTypes.func,
   settingsUpdate: PropTypes.func,
 };
 
-const Settings = ({ settings, setOffset, settingsUpdate }) => {
+const Settings = ({ navigation, settings, setOffset, settingsUpdate }) => {
   const handleGoBack = () => {
     setOffset(-1);
   };
@@ -72,7 +75,10 @@ const Settings = ({ settings, setOffset, settingsUpdate }) => {
               />
             </Right>
           </ListItem>
-          <ListItem icon>
+          <ListItem
+            icon
+            onPress={() => navigation.push('SettingsPictureQuality')}
+          >
             <Left>
               <Button style={styles.button}>
                 <Icon active name="ios-eye" />
@@ -120,7 +126,10 @@ const Settings = ({ settings, setOffset, settingsUpdate }) => {
           </ListItem>
         </View>
         <View style={styles.group}>
-          <ListItem icon>
+          <ListItem
+            icon
+            onPress={() => navigation.push('SettingsBookSuggestions')}
+          >
             <Left>
               <Button style={styles.button}>
                 <Icon active name="ios-search" />
@@ -166,7 +175,10 @@ const mapDispatchToProps = dispatch => ({
   settingsUpdate: bindActionCreators(settingsUpdate, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  withNavigation,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(Settings);
