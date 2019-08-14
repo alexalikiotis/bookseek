@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -31,6 +32,7 @@ const ResultsLoading = ({ navigation, loading, error, searchCanceled }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
           <TouchableOpacity

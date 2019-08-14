@@ -12,6 +12,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {
   Header,
@@ -59,6 +60,7 @@ const Results = ({ navigation, results, storage, saveBookRequest }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <Header>
         <Left>
           <Button transparent onPress={handleGoBack}>

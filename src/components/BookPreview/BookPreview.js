@@ -20,7 +20,9 @@ import BookAttribute from '@/components/BookAttribute';
 import { reviewsRequest } from '@/models/reviews/actions';
 
 const propTypes = {
+  navigation: PropTypes.object,
   item: PropTypes.object,
+  reviewsRequest: PropTypes.func,
 };
 
 const BookPreview = ({ navigation, item, reviewsRequest }) => {
