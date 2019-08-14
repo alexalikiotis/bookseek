@@ -14,10 +14,6 @@ import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 import PreviewScreen from '@/screens/Preview';
 import ReviewsScreen from '@/screens/Reviews';
 
-import SettingsScreen from '@/screens/Settings';
-import SettingsPictureQualityScreen from '@/screens/SettingsPictureQuality';
-import SettingsBookSuggestionsScreen from '@/screens/SettingsBookSuggestions';
-
 const ResultsNavigator = createStackNavigator(
   {
     ResultsLoading: ResultsLoadingScreen,
@@ -27,20 +23,9 @@ const ResultsNavigator = createStackNavigator(
   { headerMode: 'none' }
 );
 
-const SettingsNavigator = createStackNavigator(
-  {
-    Settings: SettingsScreen,
-    SettingsPictureQuality: SettingsPictureQualityScreen,
-    SettingsBookSuggestions: SettingsBookSuggestionsScreen,
-  },
-  {
-    headerMode: 'none',
-  }
-);
-
 const AppStack = createStackNavigator(
   {
-    Camera: SettingsNavigator,
+    Camera: CameraSwiper,
     Results: ResultsNavigator,
     Preview: PreviewScreen,
     Reviews: ReviewsScreen,

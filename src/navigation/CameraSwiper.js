@@ -8,8 +8,8 @@ import Swiper from 'react-native-swiper';
 import { setOffset } from '@/models/swiper/actions';
 
 import CameraScreen from '@/screens/Camera';
-import SettingsScreen from '@/screens/Settings';
 import LibraryScreen from '@/screens/Library';
+import SettingsNavigator from '@/navigation/SettingsNavigator';
 
 const propTypes = {
   offset: PropTypes.number,
@@ -43,7 +43,7 @@ const CameraSwiper = ({ offset, setOffset }) => {
         <CameraScreen />
       </View>
       <View style={{ flex: 1 }}>
-        <SettingsScreen />
+        <SettingsNavigator />
       </View>
     </Swiper>
   );
