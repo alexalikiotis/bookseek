@@ -32,6 +32,7 @@ import BookPreview from '@/components/BookPreview';
 import { saveBookRequest } from '@/models/library/actions';
 import { sortedBooksSelector } from '@/models/results/selectors';
 import { libraryEntitiesSelector } from '@/models/library/selectors';
+import { settingsSelector } from '@/models/settings/selectors';
 
 // import testBook from '../demo-assets/book.json'; // Only for development tests
 
@@ -39,10 +40,17 @@ const propTypes = {
   navigation: PropTypes.object,
   results: PropTypes.array,
   storage: PropTypes.object,
+  settings: PropTypes.object,
   saveBookRequest: PropTypes.func,
 };
 
-const Results = ({ navigation, results, storage, saveBookRequest }) => {
+const Results = ({
+  navigation,
+  results,
+  storage,
+  settings,
+  saveBookRequest,
+}) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [showMessage, setShowMessage] = useState(true);
 
@@ -84,7 +92,7 @@ const Results = ({ navigation, results, storage, saveBookRequest }) => {
           )}
         </Right>
       </Header>
-      {showMessage && (
+      {showMessage && settings.bookSuggestions > 1 && (
         <View style={styles.messageWrapper}>
           <View>
             <Text style={styles.messageText}>Is this not your book ?</Text>
@@ -134,6 +142,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   results: sortedBooksSelector(state),
   storage: libraryEntitiesSelector(state),
+  settings: settingsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

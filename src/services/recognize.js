@@ -5,7 +5,7 @@ import { findIndex, propEq } from 'ramda';
 import config from '@/config';
 import localTestPicture from './picture.json';
 
-export const recognizePicture = async picture => {
+export const recognizePicture = async (picture, suggestions = 3) => {
   // Perform OCR in given picture
 
   picture = localTestPicture; // Remove when running on real device
@@ -90,7 +90,7 @@ export const recognizePicture = async picture => {
       };
     })
     .sort((a, b) => b.confidence - a.confidence)
-    .slice(0, 3);
+    .slice(0, suggestions);
 
   return items;
 };
