@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -63,7 +56,6 @@ const Library = ({
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.safeArea}>
         <LibraryHeader />
         {books.length === 0 ? (

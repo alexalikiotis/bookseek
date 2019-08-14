@@ -26,8 +26,6 @@ const propTypes = {
 };
 
 const BookPreview = ({ navigation, item, reviewsRequest }) => {
-  console.log(item);
-
   return (
     <ScrollView style={styles.scrollView}>
       <View style={{ flex: 1 }}>

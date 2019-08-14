@@ -20,6 +20,10 @@ const CameraSwiper = ({ offset, setOffset }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
+    StatusBar.setBarStyle('light-content');
+  }, []);
+
+  useEffect(() => {
     if (swiperRef && offset !== 0) {
       swiperRef.current.scrollBy(offset);
       setOffset(0);

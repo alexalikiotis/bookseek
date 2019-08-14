@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StatusBar, SafeAreaView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 import CameraHeader from '@/components/CameraHeader';
@@ -10,7 +10,6 @@ const Camera = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar barStyle="light-content" />
       <RNCamera
         ref={cameraRef}
         type={RNCamera.Constants.Type.back}
