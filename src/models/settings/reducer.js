@@ -1,4 +1,8 @@
-import { settingsUpdate } from './actions';
+import {
+  settingsUpdate,
+  settingsLoadSuccess,
+  settingsLoadFailed,
+} from './actions';
 
 const initState = {
   flash: false,
@@ -15,6 +19,12 @@ const reducer = (state = initState, action) => {
         ...state,
         ...action.payload,
       };
+
+    case settingsLoadSuccess.type:
+      return action.payload;
+
+    case settingsLoadFailed.type:
+      return initState;
 
     default:
       return state;

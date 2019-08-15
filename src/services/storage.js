@@ -32,3 +32,25 @@ export const remove = async bookId => {
     throw new Error(err.message);
   }
 };
+
+export const loadSettings = async () => {
+  try {
+    const settings = await AsyncStorage.getItem('bsLocal__settings');
+    const settingsParsed = JSON.parse(settings);
+    if (!settings) {
+      throw new Error('No settings saved');
+    }
+    return settingsParsed;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const saveSettings = async settings => {
+  try {
+    await AsyncStorage.setItem('bsLocal__settings', JSON.stringify(settings));
+    return;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
