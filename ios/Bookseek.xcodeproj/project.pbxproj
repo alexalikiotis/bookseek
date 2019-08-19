@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,6 +47,7 @@
 		36FA933293C04CB28571A911 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7ED0BED8D8420DB5338018 /* FontAwesome5_Brands.ttf */; };
 		45795B70D60845EEA842EB37 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B371740BF29D407EA66645A1 /* Entypo.ttf */; };
 		47809ED5BA854A249ED3CEB7 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B8C2EBA5AD4C71AA8DECD6 /* libRNGestureHandler.a */; };
+		485359E2684646E385A35EC1 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1964CD82F8A944ECB7944275 /* libRNCAsyncStorage.a */; };
 		4B2C3DB80AF34CBD8D42420B /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47ACC5F1AAFC421BAEDB2761 /* AntDesign.ttf */; };
 		4D2007C29C364BE389F4487D /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A166716410324FBB8DC3622F /* libRNVectorIcons-tvOS.a */; };
 		540492DF49444037AC07B932 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE1EDE316E094210A4A73705 /* Ionicons.ttf */; };
@@ -63,7 +65,6 @@
 		F310C281914840CCA8086B73 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0720755EEA674EEB9499F762 /* Roboto_medium.ttf */; };
 		F476BAAD3D88460684ABF741 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D51970E1C5643B2BB8595B0 /* MaterialIcons.ttf */; };
 		F720E62F8FD14A6CBC70331E /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0773CCB1740519794ED21 /* libRNGestureHandler-tvOS.a */; };
-		485359E2684646E385A35EC1 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1964CD82F8A944ECB7944275 /* libRNCAsyncStorage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -382,6 +383,13 @@
 			remoteGlobalIDString = A39873CE1EA65EE60051E01A;
 			remoteInfo = "RNVectorIcons-tvOS";
 		};
+		FAD6DB35230B13CB00709FCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25BB6BF1812A4193BA52559A /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -409,6 +417,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Bookseek/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		148910914C634AAC84A43F8C /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		1964CD82F8A944ECB7944275 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
+		25BB6BF1812A4193BA52559A /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Bookseek-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bookseek-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Bookseek-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bookseek-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,8 +451,6 @@
 		F2CA2A6C526246E3968F6B91 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		F642AE39A4A24D718ADADC98 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		FC15D4663AE548708A5F365B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		25BB6BF1812A4193BA52559A /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		1964CD82F8A944ECB7944275 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,7 +502,6 @@
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				F720E62F8FD14A6CBC70331E /* libRNGestureHandler-tvOS.a in Frameworks */,
 				4D2007C29C364BE389F4487D /* libRNVectorIcons-tvOS.a in Frameworks */,
-				620D5419C2C748D0A46F3F97 /* libRNReanimated-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +738,7 @@
 				DE735C03439D4305BA0B877F /* libRNVectorIcons.a */,
 				5BA0773CCB1740519794ED21 /* libRNGestureHandler-tvOS.a */,
 				A166716410324FBB8DC3622F /* libRNVectorIcons-tvOS.a */,
+				1964CD82F8A944ECB7944275 /* libRNCAsyncStorage.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -765,6 +773,14 @@
 			isa = PBXGroup;
 			children = (
 				FA0B6EF422C3C2AC001341F5 /* libRNCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAD6DB32230B13CB00709FCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAD6DB36230B13CB00709FCB /* libRNCAsyncStorage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -967,6 +983,10 @@
 				{
 					ProductGroup = FA0B6EED22C3C2AB001341F5 /* Products */;
 					ProjectRef = BCF67D4438554D7E915A3761 /* RNCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = FAD6DB32230B13CB00709FCB /* Products */;
+					ProjectRef = 25BB6BF1812A4193BA52559A /* RNCAsyncStorage.xcodeproj */;
 				},
 				{
 					ProductGroup = FA0B6EEB22C3C2AB001341F5 /* Products */;
@@ -1287,6 +1307,13 @@
 			fileType = archive.ar;
 			path = "libRNVectorIcons-tvOS.a";
 			remoteRef = FA0B6EFF22C3C2AC001341F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAD6DB36230B13CB00709FCB /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = FAD6DB35230B13CB00709FCB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

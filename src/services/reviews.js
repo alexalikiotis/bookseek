@@ -8,7 +8,7 @@ export const findReviews = async isbn => {
   const response = await axios.get(iDreamBooksUri);
   const responseData = response.data;
 
-  if (responseData.totalResults === 0) {
+  if (responseData.total_results === 0) {
     throw new Error('No reviews found');
   }
 

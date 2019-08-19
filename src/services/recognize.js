@@ -5,10 +5,11 @@ import { findIndex, propEq } from 'ramda';
 import config from '@/config';
 import localTestPicture from './picture.json';
 
-export const recognizePicture = async (picture, suggestions = 3) => {
+export const recognizePicture = async (
+  picture = localTestPicture,
+  suggestions = 3
+) => {
   // Perform OCR in given picture
-
-  picture = localTestPicture; // Remove when running on real device
 
   const googleVisionUri =
     'https://vision.googleapis.com/v1/images:annotate?key=';
@@ -73,7 +74,7 @@ export const recognizePicture = async (picture, suggestions = 3) => {
       // Accept books with available isbn-13
       const isbn13Index = findIndex(
         propEq('type', 'ISBN_13'),
-        item.industryIdentifiers
+        item.industryIdentifiers || {}
       );
       return isbn13Index === -1 ? false : true;
     })

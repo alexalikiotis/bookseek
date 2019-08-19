@@ -8,7 +8,7 @@ const initState = {
   flash: false,
   pictureQuality: 0.75,
   skipProcessing: true,
-  pauseOnCapture: true,
+  pauseAfterCapture: true,
   bookSuggestions: 3,
 };
 

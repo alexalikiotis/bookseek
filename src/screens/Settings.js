@@ -115,12 +115,14 @@ const Settings = ({ navigation, settings, setOffset, settingsUpdate }) => {
               </Button>
             </Left>
             <Body>
-              <Text>Pause On Capture</Text>
+              <Text>Pause After Capture</Text>
             </Body>
             <Right>
               <Switch
-                value={settings.pauseOnCapture}
-                onValueChange={value => handleSwitch('pauseOnCapture', value)}
+                value={settings.pauseAfterCapture}
+                onValueChange={value =>
+                  handleSwitch('pauseAfterCapture', value)
+                }
               />
             </Right>
           </ListItem>
