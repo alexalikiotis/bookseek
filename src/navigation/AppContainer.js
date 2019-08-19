@@ -14,21 +14,47 @@ import PermissionsDeniedScreen from '@/screens/PermissionsDenied';
 import PreviewScreen from '@/screens/Preview';
 import ReviewsScreen from '@/screens/Reviews';
 
+const navigationOptions = {
+  gesturesEnabled: false,
+};
+
 const ResultsNavigator = createStackNavigator(
   {
     ResultsLoading: ResultsLoadingScreen,
-    ResultsError: ResultsErrorScreen,
-    Results: ResultsScreen,
+    ResultsError: {
+      name: 'ResultsError',
+      screen: ResultsErrorScreen,
+      navigationOptions,
+    },
+    Results: {
+      name: 'Results',
+      screen: ResultsScreen,
+      navigationOptions,
+    },
   },
-  { headerMode: 'none' }
+  {
+    headerMode: 'none',
+  }
 );
 
 const AppStack = createStackNavigator(
   {
     Camera: CameraSwiper,
-    Results: ResultsNavigator,
-    Preview: PreviewScreen,
-    Reviews: ReviewsScreen,
+    Results: {
+      name: 'Results',
+      screen: ResultsNavigator,
+      navigationOptions,
+    },
+    Preview: {
+      name: 'Preview',
+      screen: PreviewScreen,
+      navigationOptions,
+    },
+    Reviews: {
+      name: 'Reviews',
+      screen: ReviewsScreen,
+      navigationOptions,
+    },
   },
   {
     initialRouteName: 'Camera',
