@@ -29,25 +29,31 @@ const CameraFooter = ({
   const [onCapture, setOnCapture] = useState(false);
 
   const handleCameraButtonPress = async () => {
-    // if (cameraRef && !onCapture) {
-    //   setOnCapture(true);
-    //   const picture = await cameraRef.current.takePictureAsync({
-    //     base64: true,
-    //     quality: settings.pictureQuality,
-    //     doNotSave: true,
-    //     pauseAfterCapture: settings.pauseAfterCapture,
-    //     skipProcessing: settings.skipProcessing, // Android only
-    //   });
+    if (cameraRef && !onCapture) {
+      setOnCapture(true);
+      const picture = await cameraRef.current.takePictureAsync({
+        base64: true,
+        quality: settings.pictureQuality,
+        doNotSave: true,
+        pauseAfterCapture: settings.pauseAfterCapture,
+        skipProcessing: settings.skipProcessing, // Android only
+      });
 
-    //   searchRequest(picture);
-    //   cameraRef.current.resumePreview();
-    //   navigation.navigate('Results');
+      searchRequest(picture);
+      cameraRef.current.resumePreview();
+      navigation.navigate('Results');
 
-    //   // Enabling recapture 1 sec after navigation changed
-    //   setTimeout(() => setOnCapture(false), 1000);
-    // }
-    searchRequest();
-    navigation.navigate('Results');
+      // Enabling recapture 1 sec after navigation changed
+      setTimeout(() => setOnCapture(false), 1000);
+    }
+
+    /*
+      To search with an image from assets and not from camera capture
+      comment all the above and uncomment the following
+    */
+
+    // searchRequest();
+    // navigation.navigate('Results');
   };
 
   return (
